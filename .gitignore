@@ -28,3 +28,6 @@ logs/
 *.out
 *.synctex.gz
 *.toc
+paper/
+article-assets/
+figures/

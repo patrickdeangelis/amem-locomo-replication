@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-07-07T20:00:48.671106+00:00",
+  "generated_at_utc": "2026-07-07T21:44:51.476589+00:00",
   "project": "reprodutibilidade-em-pesquisa / etapa-2",
   "amem_repo": {
     "commit": "0c8039f28fdcc08189a23c07a3437d9d2482f9c2",
@@ -37,7 +37,7 @@
     "result_files": "results/results_amem_gpt4omini_ratio01_k*.json",
     "memory_cache_dir": "cached_memories_robust_openai_gpt-4o-mini_locomo10_79fa87e90f04",
     "cache_shared_across_k": true,
-    "cache_shared_note": "A reexecucao com caffeinate reutilizou o cache existente de 419 memorias para k=3, k=5 e k=10.",
+    "cache_shared_note": "A reexecucao reutilizou o cache existente de 419 memorias para k=3, k=5 e k=10.",
     "preserved_reduced_run": {
       "dataset": "data/locomo_etapa2_reduced_s2.json",
       "dataset_origin": "sample 0 de data/locomo10.json, sessoes 1-2, perguntas com evidencia restrita",
@@ -51,12 +51,12 @@
     }
   },
   "commands": {
-    "clone": "git clone https://github.com/WujiangXu/amem.git",
+    "clone": "git clone https://github.com/WujiangXu/A-mem.git",
     "env_setup": ".venv/bin/python -m pip install -r requirements.txt",
+    "nltk_setup": ".venv/bin/python -m nltk.downloader -d .cache/nltk punkt punkt_tab wordnet",
     "smoke": "./run_etapa2_smoke.sh",
     "reduced": "./run_etapa2_reduced.sh",
     "ratio01": "./run_etapa2_ratio01.sh",
-    "ratio01_caffeinate": "/usr/bin/caffeinate -dimsu ./run_etapa2_ratio01.sh",
     "final": "./run_etapa2_final.sh",
     "summarize_ratio01": ".venv/bin/python analysis/summarize_results.py results/results_amem_gpt4omini_ratio01_k3.json results/results_amem_gpt4omini_ratio01_k5.json results/results_amem_gpt4omini_ratio01_k10.json --output analysis/relatorio-etapa-2-ratio01.md",
     "summarize": ".venv/bin/python analysis/summarize_results.py results/results_amem_gpt4omini_reduced_s2_k3.json results/results_amem_gpt4omini_reduced_s2_k5.json results/results_amem_gpt4omini_reduced_s2_k10.json --output analysis/relatorio-etapa-2.md",
@@ -100,7 +100,7 @@
       "seed": 0,
       "temperature_answer": 0.0,
       "temperature_c5": 0.5,
-      "note": "Primary ratio01 rerun with caffeinate; reusou cache existente."
+      "note": "Primary ratio01 rerun; reusou cache existente."
     },
     {
       "label": "ratio01_k5",
@@ -114,7 +114,7 @@
       "seed": 0,
       "temperature_answer": 0.0,
       "temperature_c5": 0.5,
-      "note": "Primary ratio01 rerun with caffeinate; reusou cache existente."
+      "note": "Primary ratio01 rerun; reusou cache existente."
     },
     {
       "label": "ratio01_k10",
@@ -128,7 +128,7 @@
       "seed": 0,
       "temperature_answer": 0.0,
       "temperature_c5": 0.5,
-      "note": "Primary ratio01 rerun with caffeinate; reusou cache existente."
+      "note": "Primary ratio01 rerun; reusou cache existente."
     },
     {
       "label": "smoke_min_k10 (pre-correction)",
@@ -327,8 +327,8 @@
     {
       "path": "amem/analysis/make_manifest.py",
       "exists": true,
-      "size_bytes": 14720,
-      "sha256": "a115b79e954027ff9f838eb37fc02248065347ccb95d43956913e376e1a812f0"
+      "size_bytes": 14304,
+      "sha256": "afe428269b8a479989efa3031ebdb32736c6f688e451a337a5171294564c65b5"
     },
     {
       "path": "amem/analysis/relatorio-etapa-2-ratio01.md",
@@ -375,8 +375,8 @@
     {
       "path": "amem/run_etapa2_ratio01.sh",
       "exists": true,
-      "size_bytes": 752,
-      "sha256": "81f1da9a267105955e052cf46c45ea94fe111e5de1ca2072889f4f80bf234029"
+      "size_bytes": 829,
+      "sha256": "4a97e3457d9a93d89469ee4592fe9fac88f642d7e919293c4deb6ccc866166c8"
     },
     {
       "path": "amem/run_etapa2_final.sh",
@@ -387,8 +387,14 @@
     {
       "path": "README.md",
       "exists": true,
-      "size_bytes": 3001,
-      "sha256": "5c10528e599bc4176b4beeb370e8fa9e0997d3a860dd44f66cfa1bd38f751893"
+      "size_bytes": 2755,
+      "sha256": "35e09029eb586df17cabfe92cc97068ff795258e638b015d6bbe8560d3b0092a"
+    },
+    {
+      "path": "docs/README.md",
+      "exists": true,
+      "size_bytes": 8453,
+      "sha256": "6724d3002227f930abcbd05a399baadfbb193b6b0df639df663af3a57f18d576"
     },
     {
       "path": "docs/comandos-etapa-2.md",
@@ -413,66 +419,6 @@
       "exists": true,
       "size_bytes": 9317,
       "sha256": "990806299cd24c0adef803857c3708beba1905730ed735225e9a6067c097abaf"
-    },
-    {
-      "path": "paper/article-assets/table_aggregate_metrics.csv",
-      "exists": true,
-      "size_bytes": 1392,
-      "sha256": "f76a3fd42909adfd46905d232f60350d6667da5fc8ab3756f8e88f7e6c945394"
-    },
-    {
-      "path": "paper/article-assets/table_category_metrics.csv",
-      "exists": true,
-      "size_bytes": 2009,
-      "sha256": "9787808559dd0f55807b3b6486ccf066a93b8b92d9158175c4e6efeb9db5c9d7"
-    },
-    {
-      "path": "paper/article-assets/table_openai_usage_cost.csv",
-      "exists": true,
-      "size_bytes": 289,
-      "sha256": "fa06c27bac9b50c8fc3cc5181e7ac1fb8b61b753dce64e91e2fbc8aa44be8a44"
-    },
-    {
-      "path": "paper/article-assets/table_pairwise_deltas.csv",
-      "exists": true,
-      "size_bytes": 1828,
-      "sha256": "2b87d44eb8e15616c86563e9e787ccc6ab5a09eddcbbb046b047feded7d9c120"
-    },
-    {
-      "path": "paper/article-assets/table_worst_f1_examples.csv",
-      "exists": true,
-      "size_bytes": 3822,
-      "sha256": "8f477b63486638fcbdf80a8d45a29a7ab2ecc4e010704b1e6e1b6982d61c97fa"
-    },
-    {
-      "path": "paper/figures/f1_por_k.pdf",
-      "exists": true,
-      "size_bytes": 8979,
-      "sha256": "c130ee225bcde5e156b6da0ed364305a351fccb2f162285e75fb8e3f7c345e64"
-    },
-    {
-      "path": "paper/figures/f1_por_categoria.pdf",
-      "exists": true,
-      "size_bytes": 12254,
-      "sha256": "e9051fda625df161a569194146640ffed279718dcb0b8057f7a302c66c7a00c2"
-    },
-    {
-      "path": "paper/figures/metricas_por_k.pdf",
-      "exists": true,
-      "size_bytes": 15006,
-      "sha256": "4b25b5a09495d99c64b70392d3c2ba0c588764b64b46ace9b78018a1f133c79f"
-    },
-    {
-      "path": "paper/figures/tempo_por_k.pdf",
-      "exists": true,
-      "size_bytes": 9456,
-      "sha256": "a5d4691d6c594490dc4b806757465e0f27056bd83919e0551f1e5fd2a3f195e9"
-    },
-    {
-      "path": "paper/entrega_2_reprodutibilidade_patrick_santos.pdf",
-      "exists": true,
-      "size_bytes": 113510,
-      "sha256": "2ec448b070ce42824030b822c8ddfb21c462991ae3f617b413f78158ff0161b3"
     }
   ],
   "notes": [

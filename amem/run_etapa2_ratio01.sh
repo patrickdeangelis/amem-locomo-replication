@@ -18,6 +18,8 @@ export NLTK_DATA="${NLTK_DATA:-.cache/nltk}"
 
 mkdir -p results logs commands analysis "$HF_HOME" "$MPLCONFIGDIR" "$NLTK_DATA"
 
+.venv/bin/python -m nltk.downloader -d "$NLTK_DATA" punkt punkt_tab wordnet
+
 for k in 3 5 10; do
   /usr/bin/time -p .venv/bin/python test_advanced_robust.py \
     --backend openai \

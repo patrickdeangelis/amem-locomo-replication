@@ -59,7 +59,7 @@ O escopo considerado como planejado para esta Entrega 2 e a execucao `--ratio 0.
 - Subamostra experimental reduzida preservada em `amem/data/locomo_etapa2_reduced_s2.json`: 1 sample, 2 sessoes, 35 turnos, 20 perguntas, com evidencia restrita as sessoes preservadas.
 - A varredura `retrieve_k=3,5,10` sobre a subamostra reduzida foi preservada em duas versoes: antes da correcao, sem seed, temperatura 0.7 e sem metadados, em `amem/results/before-correction/`; e pos-correcao, com seed=0, temperatura 0.0 e bloco `metadata`, em `amem/results/`.
 - A execucao principal planejada usou `--ratio 0.1` sobre `data/locomo10.json`, mantendo a rodada reduzida intacta. O recorte selecionou o sample 0 inteiro, com 19 sessoes, 419 turnos e 199 perguntas. Os resultados estao em `amem/results/results_amem_gpt4omini_ratio01_k{3,5,10}.json`, e o relatorio correspondente esta em `resultados-etapa-2-ratio01.md` e `amem/analysis/relatorio-etapa-2-ratio01.md`.
-- Na reexecucao `--ratio 0.1` com `caffeinate`, `k=3`, `k=5` e `k=10` reutilizaram o cache existente de 419 memorias.
+- Na reexecucao `--ratio 0.1`, `k=3`, `k=5` e `k=10` reutilizaram o cache existente de 419 memorias.
 - Resultados principais consolidados em `resultados-etapa-2-ratio01.md` e `amem/analysis/relatorio-etapa-2-ratio01.md`. A rodada reduzida permanece em `resultados-etapa-2.md`, `resultados-antes-pos-correcao.md` e `amem/analysis/relatorio-etapa-2.md` apenas como historico.
 - Uso/custo medido pela OpenAI API para o projeto no dia da execucao: 4.228 chamadas, 5.789.342 tokens de entrada, 106.885 tokens de saida e US$ 0.9153483 em 2026-07-07. A granularidade do export e diaria, portanto o valor pode incluir tentativas e smoke tests do mesmo dia.
 - Manifest auditavel em `manifest-etapa-2.json` com hashes sha256 dos artefatos publicados, incluindo JSONs `ratio01`, relatorios, scripts, comandos, parametros e tempos observados. Logs e caches ficaram fora do repositorio publico.
@@ -72,7 +72,7 @@ Decisao atual:
 ### Fora do escopo atual
 
 - A execucao do dataset completo `data/locomo10.json` (10 samples, 1986 perguntas) NAO foi realizada.
-- A tentativa inicial com `--ratio 0.1` selecionou o sample 0 inteiro (419 turnos, 199 perguntas) e foi interrompida manualmente apos 333.71s por ser grande demais para smoke inicial. A execucao `--ratio 0.1` planejada foi realizada depois; a reexecucao com `caffeinate` reutilizou o cache existente para `k=3`, `k=5` e `k=10`.
+- A tentativa inicial com `--ratio 0.1` selecionou o sample 0 inteiro (419 turnos, 199 perguntas) e foi interrompida manualmente apos 333.71s por ser grande demais para smoke inicial. A execucao `--ratio 0.1` planejada foi realizada depois; a reexecucao reutilizou o cache existente para `k=3`, `k=5` e `k=10`.
 - Uma execucao futura em escala completa exigiria nova estimativa de custo/tempo com `amem/analysis/estimate_cost.py`. Estimativa central anterior para o dataset completo: ~13h de wall-clock e ~$10 (faixa $7.71-$12.86), com alta incerteza.
 
 ## Reprodutibilidade
@@ -94,9 +94,7 @@ Os tres JSONs `results_amem_gpt4omini_ratio01_k*.json` sao a evidencia principal
 - `resultados-antes-pos-correcao.md`: comparacao entre a execucao anterior (sem seed, temp 0.7) e a pos-correcao (seed=0, temp 0.0), com problemas encontrados e impacto nas conclusoes.
 - `manifest-etapa-2.json`: manifest auditavel com hashes dos artefatos principais, comandos, parametros e tempos.
 - `openai-api-usage-2026-07-07.md`: resumo sanitizado dos exports de custo e uso da OpenAI API para o dia da execucao.
-- `article-assets/`: tabelas CSV geradas a partir dos JSONs principais para alimentar o artigo da Entrega 2. Os fragmentos LaTeX nao foram incluidos no repositorio publico.
-- `figures/`: graficos PDF gerados a partir dos JSONs principais para o artigo da Entrega 2.
-- O fonte LaTeX `entrega_2_reprodutibilidade_patrick_santos.tex` foi mantido fora do repositorio publico; o PDF final esta em `paper/`.
+- `article-assets/`, `figures/` e `entrega_2_reprodutibilidade_patrick_santos.tex`: derivados locais usados para compor o artigo da Entrega 2; nao fazem parte do pacote publico, mas podem ser regenerados a partir dos JSONs e scripts de analise.
 - `amem/analysis/relatorio-etapa-2.md`: relatorio de analise pos-correcao gerado por `summarize_results.py`.
 - `amem/analysis/relatorio-etapa-2-ratio01.md`: relatorio de analise da execucao `--ratio 0.1`.
 - `amem/analysis/relatorio-etapa-2-before.md`: relatorio de analise da execucao anterior (preservado).

@@ -18,6 +18,8 @@ cd amem
 python3.11 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
+python -m nltk.downloader -d .cache/nltk \
+  punkt punkt_tab wordnet
 cp .env.example .env.local
 ```
 
@@ -30,12 +32,6 @@ cd amem
 ./run_etapa2_ratio01.sh
 ```
 
-Em macOS, para evitar suspensao durante a execucao:
-
-```bash
-cd amem
-/usr/bin/caffeinate -dimsu ./run_etapa2_ratio01.sh
-```
 
 Os resultados esperados sao gravados em:
 

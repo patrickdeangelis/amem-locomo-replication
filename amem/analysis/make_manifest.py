@@ -2,7 +2,7 @@
 """Generate `manifest-etapa-2.json`: a versionable, auditable manifest of the
 Etapa 2 execution.
 
-The manifest records, for every artifact that matters for reproducibility:
+The manifest records, for every public/versioned artifact that matters for reproducibility:
   - sha256 hash
   - size in bytes
   - relative path
@@ -36,11 +36,11 @@ ARTIFACTS = [
     "amem/data/locomo10.json",
     "amem/data/locomo_etapa2_reduced_s2.json",
     "amem/data/locomo_smoke_min.json",
-    # Primary ratio01 results JSONs.
+    # Primary ratio01 results JSONs, versioned publicly and hashed here.
     "amem/results/results_amem_gpt4omini_ratio01_k3.json",
     "amem/results/results_amem_gpt4omini_ratio01_k5.json",
     "amem/results/results_amem_gpt4omini_ratio01_k10.json",
-    # Results JSONs. These are the post-correction reduced runs
+    # Additional result JSONs versioned publicly and hashed here. These are the post-correction reduced runs
     # (seed=0, temperature=0.0, with metadata block).
     "amem/results/results_amem_gpt4omini_smoke_min_k10.json",
     "amem/results/results_amem_gpt4omini_reduced_s2_k3.json",
@@ -69,20 +69,11 @@ ARTIFACTS = [
     "amem/run_etapa2_final.sh",
     # Docs.
     "README.md",
+    "docs/README.md",
     "docs/comandos-etapa-2.md",
     "docs/resultados-etapa-2-ratio01.md",
     "docs/resultados-etapa-2.md",
     "docs/resultados-antes-pos-correcao.md",
-    "paper/article-assets/table_aggregate_metrics.csv",
-    "paper/article-assets/table_category_metrics.csv",
-    "paper/article-assets/table_openai_usage_cost.csv",
-    "paper/article-assets/table_pairwise_deltas.csv",
-    "paper/article-assets/table_worst_f1_examples.csv",
-    "paper/figures/f1_por_k.pdf",
-    "paper/figures/f1_por_categoria.pdf",
-    "paper/figures/metricas_por_k.pdf",
-    "paper/figures/tempo_por_k.pdf",
-    "paper/entrega_2_reprodutibilidade_patrick_santos.pdf",
 ]
 
 
@@ -109,7 +100,7 @@ OBSERVED_RUNS = [
         "seed": 0,
         "temperature_answer": 0.0,
         "temperature_c5": 0.5,
-        "note": "Primary ratio01 rerun with caffeinate; reusou cache existente.",
+        "note": "Primary ratio01 rerun; reusou cache existente.",
     },
     {
         "label": "ratio01_k5",
@@ -123,7 +114,7 @@ OBSERVED_RUNS = [
         "seed": 0,
         "temperature_answer": 0.0,
         "temperature_c5": 0.5,
-        "note": "Primary ratio01 rerun with caffeinate; reusou cache existente.",
+        "note": "Primary ratio01 rerun; reusou cache existente.",
     },
     {
         "label": "ratio01_k10",
@@ -137,7 +128,7 @@ OBSERVED_RUNS = [
         "seed": 0,
         "temperature_answer": 0.0,
         "temperature_c5": 0.5,
-        "note": "Primary ratio01 rerun with caffeinate; reusou cache existente.",
+        "note": "Primary ratio01 rerun; reusou cache existente.",
     },
     {
         "label": "smoke_min_k10 (pre-correction)",
@@ -227,12 +218,12 @@ OBSERVED_RUNS = [
 
 # Commands actually executed (kept in sync with comandos-etapa-2.md).
 COMMANDS = {
-    "clone": "git clone https://github.com/WujiangXu/amem.git",
+    "clone": "git clone https://github.com/WujiangXu/A-mem.git",
     "env_setup": ".venv/bin/python -m pip install -r requirements.txt",
+    "nltk_setup": ".venv/bin/python -m nltk.downloader -d .cache/nltk punkt punkt_tab wordnet",
     "smoke": "./run_etapa2_smoke.sh",
     "reduced": "./run_etapa2_reduced.sh",
     "ratio01": "./run_etapa2_ratio01.sh",
-    "ratio01_caffeinate": "/usr/bin/caffeinate -dimsu ./run_etapa2_ratio01.sh",
     "final": "./run_etapa2_final.sh",
     "summarize_ratio01": (
         ".venv/bin/python analysis/summarize_results.py "
@@ -277,8 +268,8 @@ RUN_PARAMETERS = {
     "memory_cache_dir": "cached_memories_robust_openai_gpt-4o-mini_locomo10_79fa87e90f04",
     "cache_shared_across_k": True,
     "cache_shared_note": (
-        "A reexecucao com caffeinate reutilizou o cache existente de 419 "
-        "memorias para k=3, k=5 e k=10."
+        "A reexecucao reutilizou o cache existente de 419 memorias para "
+        "k=3, k=5 e k=10."
     ),
     "preserved_reduced_run": {
         "dataset": "data/locomo_etapa2_reduced_s2.json",
