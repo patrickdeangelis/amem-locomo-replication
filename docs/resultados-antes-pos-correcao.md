@@ -17,7 +17,7 @@ A revisao por subagentes identificou seis problemas na execucao original. A tabe
 | 3 | JSONs de resultado sem bloco de metadados | Impossivel auditar seed, temperatura, hash do dataset, commit ou comando a partir do proprio JSON | O script agora grava `metadata` (seed, temperaturas, retrieve_k, sha256 do dataset, commit, comando, timestamps, duracao) |
 | 4 | Cache de memorias nomeado apenas por `dataset_stem` | Renomear um dataset mantendo o stem poderia reutilizar cache de conteudo diferente | O script agora valida o cache pelo sha256 do dataset. Na execucao atual, o cache legado foi adotado e marcado com `dataset_hash.txt`; novos caches podem usar o hash no nome do diretorio |
 | 5 | Falta analise por categoria, por pergunta, deltas pareados e IC bootstrap | A interpretacao tratava diferencas pequenas como conclusao sem quantificar incerteza | `analysis/summarize_results.py` reescrito com todas as analises e IC bootstrap |
-| 6 | Falta manifest auditavel versionavel | Os JSONs e logs sao gitignored; nao havia ponte versionada para rastreabilidade | `manifest-etapa-2.json` com sha256 de 24 artefatos, commit, comandos, parametros e tempos |
+| 6 | Falta manifest auditavel versionavel | Nao havia ponte versionada para rastreabilidade dos resultados e logs brutos | `manifest-etapa-2.json` com sha256 dos artefatos versionados, commit, comandos, parametros e tempos |
 
 ## Configuracoes das duas execucoes
 

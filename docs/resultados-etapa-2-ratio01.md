@@ -1,6 +1,6 @@
 # Resultados da Etapa 2 com `--ratio 0.1`
 
-Data da execucao: 2026-07-07. Reexecutado com `caffeinate` em 2026-07-07 para evitar sleep do computador.
+Data da execucao: 2026-07-07. Reexecutado em 2026-07-07.
 
 Esta execucao manteve a rodada reduzida anterior intacta e executou o protocolo planejado para a Entrega 2 com `--ratio 0.1` sobre `amem/data/locomo10.json`.
 
@@ -45,7 +45,7 @@ O cache usado na execucao foi preservado no vault local, mas nao foi incluido ne
 | 10 | 899.266s (15.0min) |
 | total | 2464.911s (41.1min) |
 
-A reexecucao com `caffeinate` reutilizou o cache existente de 419 memorias para `k=3`, `k=5` e `k=10`.
+A reexecucao reutilizou o cache existente de 419 memorias para `k=3`, `k=5` e `k=10`.
 
 ## Uso e custo medidos via OpenAI API
 

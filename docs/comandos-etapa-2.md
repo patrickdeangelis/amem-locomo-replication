@@ -212,10 +212,10 @@ done
 
 O mesmo procedimento ficou encapsulado em `run_etapa2_ratio01.sh`, que carrega `.env.local` quando o arquivo existe.
 
-Reexecucao final feita com `caffeinate` para evitar sleep do computador:
+Reexecucao final:
 
 ```bash
-/usr/bin/caffeinate -dimsu ./run_etapa2_ratio01.sh
+./run_etapa2_ratio01.sh
 ```
 
 Escopo efetivo do `--ratio 0.1`: sample 0 inteiro, 19 sessoes, 419 turnos e 199 perguntas.
@@ -229,7 +229,7 @@ results/results_amem_gpt4omini_ratio01_k10.json
 analysis/relatorio-etapa-2-ratio01.md
 ```
 
-Tempos registrados nos metadados dos JSONs apos a reexecucao com `caffeinate`:
+Tempos registrados nos metadados dos JSONs apos a reexecucao:
 
 ```text
 k=3: 755.474s

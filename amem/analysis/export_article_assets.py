@@ -15,8 +15,8 @@ import matplotlib.pyplot as plt
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-ASSET_DIR = PROJECT_ROOT / "paper/article-assets"
-FIGURE_DIR = PROJECT_ROOT / "paper/figures"
+ASSET_DIR = PROJECT_ROOT / "local-article-assets"
+FIGURE_DIR = PROJECT_ROOT / "local-figures"
 RESULTS = [
     PROJECT_ROOT / "amem/results/results_amem_gpt4omini_ratio01_k3.json",
     PROJECT_ROOT / "amem/results/results_amem_gpt4omini_ratio01_k5.json",

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-07-07T21:44:51.476589+00:00",
+  "generated_at_utc": "2026-07-07T21:49:16.130458+00:00",
   "project": "reprodutibilidade-em-pesquisa / etapa-2",
   "amem_repo": {
     "commit": "0c8039f28fdcc08189a23c07a3437d9d2482f9c2",
@@ -316,7 +316,7 @@
       "path": "amem/analysis/export_article_assets.py",
       "exists": true,
       "size_bytes": 10548,
-      "sha256": "4a42898d15e4deb3ebe5c307734abedfec9e0d6079eedce04959e42b5e30726c"
+      "sha256": "e66a94dfe0a6091388825e487e435f26bb4c29f9643f37f8bfac187606b18db1"
     },
     {
       "path": "amem/analysis/estimate_cost.py",
@@ -399,14 +399,14 @@
     {
       "path": "docs/comandos-etapa-2.md",
       "exists": true,
-      "size_bytes": 7768,
-      "sha256": "71f1144dc7d4132299d4b47046fd1ef8471f2c294ea0f50348b3305fc9c01665"
+      "size_bytes": 7669,
+      "sha256": "633c89be643f7b659f1c1058ba2981428280c66551c7b77d0913c81382ee4d53"
     },
     {
       "path": "docs/resultados-etapa-2-ratio01.md",
       "exists": true,
-      "size_bytes": 3878,
-      "sha256": "39e0dd156bb61b33a7427ba8181db5799694aeb1d3ca9fdcc323faf3cf8a6898"
+      "size_bytes": 3812,
+      "sha256": "652b9cffdeb97f522b6dcfe17367c5a8c145ea306fc567fac264f4e74bd25f7d"
     },
     {
       "path": "docs/resultados-etapa-2.md",
@@ -417,8 +417,8 @@
     {
       "path": "docs/resultados-antes-pos-correcao.md",
       "exists": true,
-      "size_bytes": 9317,
-      "sha256": "990806299cd24c0adef803857c3708beba1905730ed735225e9a6067c097abaf"
+      "size_bytes": 9324,
+      "sha256": "8d997d4ed2487b8a84946536bf0f99c73646d05ea1b957c393920501b89e4f27"
     }
   ],
   "notes": [
