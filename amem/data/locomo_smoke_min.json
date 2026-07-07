@@ -1,0 +1,132 @@
+[
+  {
+    "qa": [
+      {
+        "question": "When did Caroline go to the LGBTQ support group?",
+        "answer": "7 May 2023",
+        "evidence": [
+          "D1:3"
+        ],
+        "category": 2
+      },
+      {
+        "question": "When did Melanie paint a sunrise?",
+        "answer": 2022,
+        "evidence": [
+          "D1:12"
+        ],
+        "category": 2
+      },
+      {
+        "question": "What fields would Caroline be likely to pursue in her educaton?",
+        "answer": "Psychology, counseling certification",
+        "evidence": [
+          "D1:9",
+          "D1:11"
+        ],
+        "category": 3
+      }
+    ],
+    "conversation": {
+      "speaker_a": "Caroline",
+      "speaker_b": "Melanie",
+      "session_1_date_time": "1:56 pm on 8 May, 2023",
+      "session_1": [
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:1",
+          "text": "Hey Mel! Good to see you! How have you been?"
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:2",
+          "text": "Hey Caroline! Good to see you! I'm swamped with the kids & work. What's up with you? Anything new?"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:3",
+          "text": "I went to a LGBTQ support group yesterday and it was so powerful."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:4",
+          "text": "Wow, that's cool, Caroline! What happened that was so awesome? Did you hear any inspiring stories?"
+        },
+        {
+          "speaker": "Caroline",
+          "img_url": [
+            "https://i.redd.it/l7hozpetnhlb1.jpg"
+          ],
+          "blip_caption": "a photo of a dog walking past a wall with a painting of a woman",
+          "query": "transgender pride flag mural",
+          "dia_id": "D1:5",
+          "text": "The transgender stories were so inspiring! I was so happy and thankful for all the support."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:6",
+          "text": "Wow, love that painting! So cool you found such a helpful group. What's it done for you?"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:7",
+          "text": "The support group has made me feel accepted and given me courage to embrace myself."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:8",
+          "text": "That's really cool. You've got guts. What now?"
+        }
+      ]
+    },
+    "event_summary": {
+      "events_session_1": {
+        "Caroline": [
+          "Caroline attends an LGBTQ support group for the first time."
+        ],
+        "Melanie": [],
+        "date": "8 May, 2023"
+      }
+    },
+    "observation": {
+      "session_1_observation": {
+        "Caroline": [
+          [
+            "Caroline attended an LGBTQ support group recently and found the transgender stories inspiring.",
+            "D1:3"
+          ],
+          [
+            "The support group has made Caroline feel accepted and given her courage to embrace herself.",
+            "D1:7"
+          ],
+          [
+            "Caroline is planning to continue her education and explore career options in counseling or mental health to support those with similar issues.",
+            "D1:9"
+          ]
+        ],
+        "Melanie": [
+          [
+            "Melanie is currently managing kids and work and finds it overwhelming.",
+            "D1:2"
+          ],
+          [
+            "Melanie painted a lake sunrise last year which holds special meaning to her.",
+            "D1:14"
+          ],
+          [
+            "Painting is a fun way for Melanie to express her feelings and get creative, helping her relax after a long day.",
+            "D1:16"
+          ],
+          [
+            "Melanie is going swimming with the kids after the conversation.",
+            "D1:18"
+          ]
+        ]
+      }
+    },
+    "session_summary": {
+      "session_1_summary": "Caroline and Melanie had a conversation on 8 May 2023 at 1:56 pm. Caroline mentioned that she attended an LGBTQ support group and was inspired by the transgender stories she heard. The support group made her feel accepted and gave her the courage to embrace herself. Caroline plans to continue her education and explore career options, particularly in counseling or working in mental health. Melanie praised Caroline's empathy and mentioned that she painted a lake sunrise last year as a way of expressing herself. Caroline complimented Melanie's painting and agreed that painting is a great outlet for relaxation and self-expression. They both emphasized the importance of taking care of oneself. Caroline was going to do some research, while Melanie planned to go swimming with her kids."
+    },
+    "sample_id": "conv-26-smoke-min"
+  }
+]

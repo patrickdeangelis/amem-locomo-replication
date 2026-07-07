@@ -1,0 +1,484 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-07-07T20:00:48.671106+00:00",
+  "project": "reprodutibilidade-em-pesquisa / etapa-2",
+  "amem_repo": {
+    "commit": "0c8039f28fdcc08189a23c07a3437d9d2482f9c2",
+    "remote": "https://github.com/WujiangXu/A-mem.git",
+    "path": "amem"
+  },
+  "run_parameters": {
+    "backend": "openai",
+    "model": "gpt-4o-mini",
+    "dataset": "data/locomo10.json",
+    "dataset_sha256": "79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4",
+    "ratio": 0.1,
+    "dataset_origin": "sample 0 inteiro de data/locomo10.json selecionado por --ratio 0.1",
+    "samples": 1,
+    "sessions": 19,
+    "turns": 419,
+    "questions": 199,
+    "category_distribution": {
+      "1": 32,
+      "2": 37,
+      "3": 13,
+      "4": 70,
+      "5": 47
+    },
+    "retrieve_k_values": [
+      3,
+      5,
+      10
+    ],
+    "seed": 0,
+    "temperature_categories_1_4": 0.0,
+    "temperature_c5": 0.5,
+    "metadata_block": true,
+    "result_files": "results/results_amem_gpt4omini_ratio01_k*.json",
+    "memory_cache_dir": "cached_memories_robust_openai_gpt-4o-mini_locomo10_79fa87e90f04",
+    "cache_shared_across_k": true,
+    "cache_shared_note": "A reexecucao com caffeinate reutilizou o cache existente de 419 memorias para k=3, k=5 e k=10.",
+    "preserved_reduced_run": {
+      "dataset": "data/locomo_etapa2_reduced_s2.json",
+      "dataset_origin": "sample 0 de data/locomo10.json, sessoes 1-2, perguntas com evidencia restrita",
+      "samples": 1,
+      "sessions": 2,
+      "turns": 35,
+      "questions": 20,
+      "result_files": "results/results_amem_gpt4omini_reduced_s2_k*.json",
+      "before_correction_result_files": "results/before-correction/results_amem_gpt4omini_reduced_s2_k*.json",
+      "note": "Rodada preservada apenas como historico de depuracao e comparacao de reprodutibilidade."
+    }
+  },
+  "commands": {
+    "clone": "git clone https://github.com/WujiangXu/amem.git",
+    "env_setup": ".venv/bin/python -m pip install -r requirements.txt",
+    "smoke": "./run_etapa2_smoke.sh",
+    "reduced": "./run_etapa2_reduced.sh",
+    "ratio01": "./run_etapa2_ratio01.sh",
+    "ratio01_caffeinate": "/usr/bin/caffeinate -dimsu ./run_etapa2_ratio01.sh",
+    "final": "./run_etapa2_final.sh",
+    "summarize_ratio01": ".venv/bin/python analysis/summarize_results.py results/results_amem_gpt4omini_ratio01_k3.json results/results_amem_gpt4omini_ratio01_k5.json results/results_amem_gpt4omini_ratio01_k10.json --output analysis/relatorio-etapa-2-ratio01.md",
+    "summarize": ".venv/bin/python analysis/summarize_results.py results/results_amem_gpt4omini_reduced_s2_k3.json results/results_amem_gpt4omini_reduced_s2_k5.json results/results_amem_gpt4omini_reduced_s2_k10.json --output analysis/relatorio-etapa-2.md",
+    "estimate": ".venv/bin/python analysis/estimate_cost.py --print-md",
+    "article_assets": "MPLCONFIGDIR=../.cache/matplotlib .venv/bin/python analysis/export_article_assets.py"
+  },
+  "api_usage": {
+    "source_exports": [
+      "/Users/patrick/Downloads/cost_2026-06-07_2026-07-07.csv",
+      "/Users/patrick/Downloads/completions_usage_2026-06-07_2026-07-07.csv"
+    ],
+    "aggregation": "daily",
+    "bucket_utc": {
+      "start": "2026-07-07T00:00:00+00:00",
+      "end": "2026-07-08T00:00:00+00:00"
+    },
+    "project_name": "Default Project",
+    "organization_name": "Personal",
+    "model": "gpt-4o-mini-2024-07-18",
+    "service_tier": "default",
+    "batch": false,
+    "num_model_requests": 4228,
+    "input_tokens": 5789342,
+    "input_cached_tokens": 229120,
+    "input_uncached_tokens": 5560222,
+    "output_tokens": 106885,
+    "amount_value": 0.9153483,
+    "amount_currency": "usd",
+    "interpretation": "Custo medido pela API para o projeto no dia da execucao ratio01; como o export e diario, pode incluir tentativas e smoke tests do mesmo dia."
+  },
+  "observed_runs": [
+    {
+      "label": "ratio01_k3",
+      "dataset": "data/locomo10.json",
+      "ratio": 0.1,
+      "retrieve_k": 3,
+      "cold": false,
+      "wall_seconds": 755.474,
+      "log": "logs/eval_robust_gpt-4o-mini_openai_ratio0.1_2026-07-07-12-43.log",
+      "result_file": "results/results_amem_gpt4omini_ratio01_k3.json",
+      "seed": 0,
+      "temperature_answer": 0.0,
+      "temperature_c5": 0.5,
+      "note": "Primary ratio01 rerun with caffeinate; reusou cache existente."
+    },
+    {
+      "label": "ratio01_k5",
+      "dataset": "data/locomo10.json",
+      "ratio": 0.1,
+      "retrieve_k": 5,
+      "cold": false,
+      "wall_seconds": 810.171,
+      "log": "logs/eval_robust_gpt-4o-mini_openai_ratio0.1_2026-07-07-12-55.log",
+      "result_file": "results/results_amem_gpt4omini_ratio01_k5.json",
+      "seed": 0,
+      "temperature_answer": 0.0,
+      "temperature_c5": 0.5,
+      "note": "Primary ratio01 rerun with caffeinate; reusou cache existente."
+    },
+    {
+      "label": "ratio01_k10",
+      "dataset": "data/locomo10.json",
+      "ratio": 0.1,
+      "retrieve_k": 10,
+      "cold": false,
+      "wall_seconds": 899.266,
+      "log": "logs/eval_robust_gpt-4o-mini_openai_ratio0.1_2026-07-07-13-09.log",
+      "result_file": "results/results_amem_gpt4omini_ratio01_k10.json",
+      "seed": 0,
+      "temperature_answer": 0.0,
+      "temperature_c5": 0.5,
+      "note": "Primary ratio01 rerun with caffeinate; reusou cache existente."
+    },
+    {
+      "label": "smoke_min_k10 (pre-correction)",
+      "dataset": "data/locomo_smoke_min.json",
+      "retrieve_k": 10,
+      "cold": true,
+      "wall_seconds_estimated": 74.46,
+      "log": "logs/eval_robust_gpt-4o-mini_openai_ratio1.0_2026-07-07-09-20.log",
+      "result_file": "results/results_amem_gpt4omini_smoke_min_k10.json",
+      "seed": null,
+      "temperature_answer": 0.7,
+      "note": "Pre-correction smoke run; no seed, temp 0.7. Inclui warmup do SentenceTransformer."
+    },
+    {
+      "label": "reduced_s2_k3 (pre-correction)",
+      "dataset": "data/locomo_etapa2_reduced_s2.json",
+      "retrieve_k": 3,
+      "cold": true,
+      "wall_seconds_estimated": 300.0,
+      "log": "logs/eval_robust_gpt-4o-mini_openai_ratio1.0_2026-07-07-09-23.log",
+      "result_file": "results/before-correction/results_amem_gpt4omini_reduced_s2_k3.json",
+      "seed": null,
+      "temperature_answer": 0.7,
+      "note": "Pre-correction; criou o cache de memorias. Sem seed, temp 0.7."
+    },
+    {
+      "label": "reduced_s2_k5 (pre-correction)",
+      "dataset": "data/locomo_etapa2_reduced_s2.json",
+      "retrieve_k": 5,
+      "cold": false,
+      "wall_seconds_estimated": 60.0,
+      "log": "logs/eval_robust_gpt-4o-mini_openai_ratio1.0_2026-07-07-09-28.log",
+      "result_file": "results/before-correction/results_amem_gpt4omini_reduced_s2_k5.json",
+      "seed": null,
+      "temperature_answer": 0.7,
+      "note": "Pre-correction; reusou cache. Sem seed, temp 0.7."
+    },
+    {
+      "label": "reduced_s2_k10 (pre-correction)",
+      "dataset": "data/locomo_etapa2_reduced_s2.json",
+      "retrieve_k": 10,
+      "cold": false,
+      "wall_seconds_estimated": 60.0,
+      "log": "logs/eval_robust_gpt-4o-mini_openai_ratio1.0_2026-07-07-09-30.log",
+      "result_file": "results/before-correction/results_amem_gpt4omini_reduced_s2_k10.json",
+      "seed": null,
+      "temperature_answer": 0.7,
+      "note": "Pre-correction; reusou cache. Sem seed, temp 0.7."
+    },
+    {
+      "label": "reduced_s2_k3 (post-correction)",
+      "dataset": "data/locomo_etapa2_reduced_s2.json",
+      "retrieve_k": 3,
+      "cold": false,
+      "wall_seconds": 91.561,
+      "log": "logs/eval_robust_gpt-4o-mini_openai_ratio1.0_2026-07-07-10-08.log",
+      "result_file": "results/results_amem_gpt4omini_reduced_s2_k3.json",
+      "seed": 0,
+      "temperature_answer": 0.0,
+      "note": "Post-correction; reusou cache. seed=0, temp=0.0."
+    },
+    {
+      "label": "reduced_s2_k5 (post-correction)",
+      "dataset": "data/locomo_etapa2_reduced_s2.json",
+      "retrieve_k": 5,
+      "cold": false,
+      "wall_seconds": 107.837,
+      "log": "logs/eval_robust_gpt-4o-mini_openai_ratio1.0_2026-07-07-10-10.log",
+      "result_file": "results/results_amem_gpt4omini_reduced_s2_k5.json",
+      "seed": 0,
+      "temperature_answer": 0.0,
+      "note": "Post-correction; reusou cache. seed=0, temp=0.0."
+    },
+    {
+      "label": "reduced_s2_k10 (post-correction)",
+      "dataset": "data/locomo_etapa2_reduced_s2.json",
+      "retrieve_k": 10,
+      "cold": false,
+      "wall_seconds": 93.378,
+      "log": "logs/eval_robust_gpt-4o-mini_openai_ratio1.0_2026-07-07-10-12.log",
+      "result_file": "results/results_amem_gpt4omini_reduced_s2_k10.json",
+      "seed": 0,
+      "temperature_answer": 0.0,
+      "note": "Post-correction; reusou cache. seed=0, temp=0.0."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "amem/data/locomo10.json",
+      "exists": true,
+      "size_bytes": 2805274,
+      "sha256": "79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4"
+    },
+    {
+      "path": "amem/data/locomo_etapa2_reduced_s2.json",
+      "exists": true,
+      "size_bytes": 18117,
+      "sha256": "ad2c34ec9ee0bb1aa1e4d6d8021f7aa56f719d52d3535d2d2162248d2b7a1853"
+    },
+    {
+      "path": "amem/data/locomo_smoke_min.json",
+      "exists": true,
+      "size_bytes": 4795,
+      "sha256": "2d49b8d724eac15d805714c5adfa7ec3fc8d537fcad895d2fc9f38cdbc2ece27"
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_ratio01_k3.json",
+      "exists": true,
+      "size_bytes": 165148,
+      "sha256": "597597ce3a40fdacaeaaa329a21cbab692205c9a3a02bbb1a4e8c9e0caf1d89c"
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_ratio01_k5.json",
+      "exists": true,
+      "size_bytes": 165551,
+      "sha256": "f007f9070b2b28780271087e973b96d7d49cb82a3dc35476ec1f8f15d06ccbd7"
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_ratio01_k10.json",
+      "exists": true,
+      "size_bytes": 166420,
+      "sha256": "1ce76ddfd969c38fc7887d4f4e5d2edb03689d1c8ad5e7d95246653d9b392887"
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_smoke_min_k10.json",
+      "exists": true,
+      "size_bytes": 10951,
+      "sha256": "d2a7ab67375d2ebf4293489b3dce87c7625b44e54f1b9ef01d83da5aa952d2c2"
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_reduced_s2_k3.json",
+      "exists": true,
+      "size_bytes": 32313,
+      "sha256": "6596e3915bf665488b6d2fd1eeb68ee3cc59a624ab572ea189953ea0ae91a046"
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_reduced_s2_k5.json",
+      "exists": true,
+      "size_bytes": 33454,
+      "sha256": "a21976b0fc86cbc10b6b664c540254fc383b92b2558612f97394177ba644689b"
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_reduced_s2_k10.json",
+      "exists": true,
+      "size_bytes": 33929,
+      "sha256": "4de38802ef4045b11c610bac3cf01b2dd2da6c5a58b9fad8c9396fb0d1e74cf9"
+    },
+    {
+      "path": "amem/results/before-correction/results_amem_gpt4omini_reduced_s2_k3.json",
+      "exists": true,
+      "size_bytes": 32438,
+      "sha256": "6071b10b8965f1d44ae80856300668038d7457e4c21983295c4fb38183c62c8f"
+    },
+    {
+      "path": "amem/results/before-correction/results_amem_gpt4omini_reduced_s2_k5.json",
+      "exists": true,
+      "size_bytes": 32368,
+      "sha256": "972ccfdb2b5f716f6bee95de9fb0809f657abc8c5559f356c6d044f970991304"
+    },
+    {
+      "path": "amem/results/before-correction/results_amem_gpt4omini_reduced_s2_k10.json",
+      "exists": true,
+      "size_bytes": 32458,
+      "sha256": "c1e78191433ceb1ab37903709ed1f593bf29f75d5a3532b57034cd70a2f5a2e1"
+    },
+    {
+      "path": "amem/analysis/make_smoke_dataset.py",
+      "exists": true,
+      "size_bytes": 1296,
+      "sha256": "1715402257a6b0de04ea0717bb50ab1e186bf73ea9810b5370ba43e43d6ff414"
+    },
+    {
+      "path": "amem/analysis/make_reduced_dataset.py",
+      "exists": true,
+      "size_bytes": 2259,
+      "sha256": "78a1222db14bd605c81d38ce7f3c0969c3960f5b8e71bf21e61aae77eba4d437"
+    },
+    {
+      "path": "amem/analysis/summarize_results.py",
+      "exists": true,
+      "size_bytes": 20452,
+      "sha256": "c498335761a86550088bcb0fe53921aac9c878abb4746b3e3efeb2adf6b6d732"
+    },
+    {
+      "path": "amem/analysis/export_article_assets.py",
+      "exists": true,
+      "size_bytes": 10548,
+      "sha256": "4a42898d15e4deb3ebe5c307734abedfec9e0d6079eedce04959e42b5e30726c"
+    },
+    {
+      "path": "amem/analysis/estimate_cost.py",
+      "exists": true,
+      "size_bytes": 12859,
+      "sha256": "6314b7cca873ee368cd218c3d2760f774409d57f48bbe9bb667d63f3e4c3d08a"
+    },
+    {
+      "path": "amem/analysis/make_manifest.py",
+      "exists": true,
+      "size_bytes": 14720,
+      "sha256": "a115b79e954027ff9f838eb37fc02248065347ccb95d43956913e376e1a812f0"
+    },
+    {
+      "path": "amem/analysis/relatorio-etapa-2-ratio01.md",
+      "exists": true,
+      "size_bytes": 17217,
+      "sha256": "d16b9638fe1d36e102a695fedf8e4cb9267dfa5a31768f089a2718f531e829fb"
+    },
+    {
+      "path": "amem/analysis/relatorio-etapa-2.md",
+      "exists": true,
+      "size_bytes": 17885,
+      "sha256": "59368c3a2c75606df5a8e98221c47c9ccbfeb32664e43e020caf29670c041b29"
+    },
+    {
+      "path": "amem/analysis/relatorio-etapa-2-before.md",
+      "exists": true,
+      "size_bytes": 17844,
+      "sha256": "ba559f4cbab75868176567dd26e1dc9bf539f10f907f25fac20d29026cbf30fd"
+    },
+    {
+      "path": "docs/openai-api-usage-2026-07-07.md",
+      "exists": true,
+      "size_bytes": 1499,
+      "sha256": "1d06eaaf3c6248547de817d2d05f113ffb8739ab753983d6fcb67d9d8ebc270f"
+    },
+    {
+      "path": "amem/test_advanced_robust.py",
+      "exists": true,
+      "size_bytes": 22249,
+      "sha256": "8c807f0b11482059fa638b8ff1fffe8eaed0fa2126204a04dd7212f4caaa74fe"
+    },
+    {
+      "path": "amem/run_etapa2_smoke.sh",
+      "exists": true,
+      "size_bytes": 697,
+      "sha256": "8462fa680dc21a1c539a6cb7d3fd811b41f6bd2f676a311c9b560817d4399d4c"
+    },
+    {
+      "path": "amem/run_etapa2_reduced.sh",
+      "exists": true,
+      "size_bytes": 754,
+      "sha256": "ffbd7ee420c4ac909676fd6099806a19f43961d7346f0bfd5e2a7bc636a5b69f"
+    },
+    {
+      "path": "amem/run_etapa2_ratio01.sh",
+      "exists": true,
+      "size_bytes": 752,
+      "sha256": "81f1da9a267105955e052cf46c45ea94fe111e5de1ca2072889f4f80bf234029"
+    },
+    {
+      "path": "amem/run_etapa2_final.sh",
+      "exists": true,
+      "size_bytes": 731,
+      "sha256": "8437e09b111d137e217a3c4dec4b4e948a7841cb6f777f4d5987de9e9a57a70e"
+    },
+    {
+      "path": "README.md",
+      "exists": true,
+      "size_bytes": 3001,
+      "sha256": "5c10528e599bc4176b4beeb370e8fa9e0997d3a860dd44f66cfa1bd38f751893"
+    },
+    {
+      "path": "docs/comandos-etapa-2.md",
+      "exists": true,
+      "size_bytes": 7768,
+      "sha256": "71f1144dc7d4132299d4b47046fd1ef8471f2c294ea0f50348b3305fc9c01665"
+    },
+    {
+      "path": "docs/resultados-etapa-2-ratio01.md",
+      "exists": true,
+      "size_bytes": 3878,
+      "sha256": "39e0dd156bb61b33a7427ba8181db5799694aeb1d3ca9fdcc323faf3cf8a6898"
+    },
+    {
+      "path": "docs/resultados-etapa-2.md",
+      "exists": true,
+      "size_bytes": 10067,
+      "sha256": "1f29394a97287674cbdc05143daabe3c957dbac06d538c90de45d6cdda10d3ec"
+    },
+    {
+      "path": "docs/resultados-antes-pos-correcao.md",
+      "exists": true,
+      "size_bytes": 9317,
+      "sha256": "990806299cd24c0adef803857c3708beba1905730ed735225e9a6067c097abaf"
+    },
+    {
+      "path": "paper/article-assets/table_aggregate_metrics.csv",
+      "exists": true,
+      "size_bytes": 1392,
+      "sha256": "f76a3fd42909adfd46905d232f60350d6667da5fc8ab3756f8e88f7e6c945394"
+    },
+    {
+      "path": "paper/article-assets/table_category_metrics.csv",
+      "exists": true,
+      "size_bytes": 2009,
+      "sha256": "9787808559dd0f55807b3b6486ccf066a93b8b92d9158175c4e6efeb9db5c9d7"
+    },
+    {
+      "path": "paper/article-assets/table_openai_usage_cost.csv",
+      "exists": true,
+      "size_bytes": 289,
+      "sha256": "fa06c27bac9b50c8fc3cc5181e7ac1fb8b61b753dce64e91e2fbc8aa44be8a44"
+    },
+    {
+      "path": "paper/article-assets/table_pairwise_deltas.csv",
+      "exists": true,
+      "size_bytes": 1828,
+      "sha256": "2b87d44eb8e15616c86563e9e787ccc6ab5a09eddcbbb046b047feded7d9c120"
+    },
+    {
+      "path": "paper/article-assets/table_worst_f1_examples.csv",
+      "exists": true,
+      "size_bytes": 3822,
+      "sha256": "8f477b63486638fcbdf80a8d45a29a7ab2ecc4e010704b1e6e1b6982d61c97fa"
+    },
+    {
+      "path": "paper/figures/f1_por_k.pdf",
+      "exists": true,
+      "size_bytes": 8979,
+      "sha256": "c130ee225bcde5e156b6da0ed364305a351fccb2f162285e75fb8e3f7c345e64"
+    },
+    {
+      "path": "paper/figures/f1_por_categoria.pdf",
+      "exists": true,
+      "size_bytes": 12254,
+      "sha256": "e9051fda625df161a569194146640ffed279718dcb0b8057f7a302c66c7a00c2"
+    },
+    {
+      "path": "paper/figures/metricas_por_k.pdf",
+      "exists": true,
+      "size_bytes": 15006,
+      "sha256": "4b25b5a09495d99c64b70392d3c2ba0c588764b64b46ace9b78018a1f133c79f"
+    },
+    {
+      "path": "paper/figures/tempo_por_k.pdf",
+      "exists": true,
+      "size_bytes": 9456,
+      "sha256": "a5d4691d6c594490dc4b806757465e0f27056bd83919e0551f1e5fd2a3f195e9"
+    },
+    {
+      "path": "paper/entrega_2_reprodutibilidade_patrick_santos.pdf",
+      "exists": true,
+      "size_bytes": 113510,
+      "sha256": "2ec448b070ce42824030b822c8ddfb21c462991ae3f617b413f78158ff0161b3"
+    }
+  ],
+  "notes": [
+    "Results JSONs sao versionados neste repositorio publicado; logs brutos e caches locais nao foram incluidos.",
+    "A execucao ratio01 e a evidencia principal da Etapa 2; a rodada reduzida foi preservada apenas como historico de comparacao e auditoria.",
+    "Para verificar um artefato: sha256sum <path> e comparar com o campo sha256 aqui.",
+    "Tempos das execucoes pos-correcao e ratio01 vêm dos metadados dos JSONs de resultado."
+  ]
+}
