@@ -9,7 +9,6 @@ O experimento principal executado usa `amem/data/locomo10.json` com `--ratio 0.1
 - `amem/`: codigo do A-Mem usado na execucao, scripts de reproducao, dados e JSONs de resultado.
 - `amem/analysis/`: scripts de analise, geracao de relatorios, tabelas, figuras, manifest e estimativa de custo.
 - `amem/results/`: resultados brutos em JSON. Os arquivos `results_amem_gpt4omini_ratio01_k*.json` sao a evidencia principal.
-- `paper/`: PDF final, tabelas CSV e figuras usadas no artigo. O fonte LaTeX do paper nao e publicado neste repositorio.
 - `docs/`: comandos executados, manifest auditavel, relatorios e resumo sanitizado de uso/custo da OpenAI API.
 
 ## Execucao principal reproduzida
@@ -64,7 +63,7 @@ python analysis/export_article_assets.py
 python analysis/make_manifest.py
 ```
 
-Os relatorios, tabelas CSV e figuras ja publicados estao em `docs/`, `paper/article-assets/` e `paper/figures/`.
+Os relatorios publicados estao em `docs/`.
 
 ## Resultados principais
 
