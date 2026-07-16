@@ -16,9 +16,10 @@ regenerar a análise do experimento sem repetir chamadas à OpenAI API.
 - `article-assets/entrega3/`: tabelas e figuras regeneráveis.
 - `docs/experimento-cinco-blocos/`: protocolo, ambiente e planejamento.
 - `docs/entrega_3_reprodutibilidade_patrick_santos.pdf`: artigo científico.
+- `entrega_3_reprodutibilidade_patrick_santos.tex`: fonte LaTeX do artigo.
 
-O fonte do artigo não integra o pacote público. Somente o PDF final é
-distribuído.
+O artigo integra o pacote público em PDF e em fonte LaTeX, o que permite
+inspecionar e recompilar o manuscrito.
 
 ## Reprodução offline
 
@@ -102,17 +103,17 @@ O repositório oficial é:
 
 https://github.com/patrickdeangelis/amem-locomo-replication
 
+O código, os dados, os quinze resultados e os derivados foram publicados no
+commit `5b28c7a5c1b9`. A atualização seguinte acrescenta o PDF final, o fonte
+LaTeX do artigo e o manifesto de hashes.
+
 Antes da submissão final ainda é necessário:
 
-1. publicar os artefatos preparados;
-2. atualizar o artigo com a URL e os caminhos públicos;
-3. substituir o PDF pela versão final;
-4. gerar o manifesto com os hashes finais;
-5. criar tag ou release;
-6. testar os links sem autenticação;
-7. depositar o kit em plataforma arquivística, quando viável;
-8. registrar DOI, quando oferecido pela plataforma;
-9. enviar o formulário da disciplina.
+1. criar tag ou release;
+2. testar os links sem autenticação;
+3. depositar o kit em plataforma arquivística, quando viável;
+4. registrar DOI, quando oferecido pela plataforma;
+5. enviar o formulário da disciplina.
 
 As licenças do código, dos dados e dos artefatos locais estão descritas em
 `amem/LICENSE`, `amem/data/README.md` e `LICENSE-ARTIFACTS.md`.

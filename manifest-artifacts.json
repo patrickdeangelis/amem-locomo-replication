@@ -1,0 +1,525 @@
+{
+  "schema_version": "1.0",
+  "generated_at_utc": "2026-07-16T01:00:19.371348Z",
+  "repository": "https://github.com/patrickdeangelis/amem-locomo-replication",
+  "base_artifact_commit": "5b28c7a5c1b9b857739ba1df9a4c84209fac93d7",
+  "article_source_included": true,
+  "experiment_matrix": {
+    "replicates": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5"
+    ],
+    "retrieve_k": [
+      3,
+      5,
+      10
+    ],
+    "result_files": 15,
+    "complete": true
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "fa640778bfc0fdcc70048e194ef33652b988f41dc316c33451d62c453eadbeb3",
+      "size_bytes": 485
+    },
+    {
+      "path": "LICENSE-ARTIFACTS.md",
+      "sha256": "415ec7b9f1dd3e61b02a7ef93975b0324ceb025dd49b9f5a17350491caa552c1",
+      "size_bytes": 648
+    },
+    {
+      "path": "README.md",
+      "sha256": "4419df6991cbcd2cb9eed141fb565963aadce198ff93052f7cf45a63b7f2a72d",
+      "size_bytes": 5114
+    },
+    {
+      "path": "amem/.env.example",
+      "sha256": "fc2df9d54ca344217f6fa07ed6610bd7109f9d0bdc0f04bbbdafc67b4ce6dec6",
+      "size_bytes": 97
+    },
+    {
+      "path": "amem/.gitignore",
+      "sha256": "89cf48841577d004b214fb15b1eb5abdb4ca9ebf553235a348f28c399ed15588",
+      "size_bytes": 81
+    },
+    {
+      "path": "amem/Figure/framework.jpg",
+      "sha256": "18dd9fd23a0a7f8bef51991a1b613281f8851da50bb765aaae2e1cd0f1f0e279",
+      "size_bytes": 750519
+    },
+    {
+      "path": "amem/Figure/intro-a.jpg",
+      "sha256": "7298d8c0a4b22365ff3c56aeda3b99b1cd8b9b4c26a14a5d4236d957ad80a92d",
+      "size_bytes": 72509
+    },
+    {
+      "path": "amem/Figure/intro-b.jpg",
+      "sha256": "82262bc05cdd83edb3889bd9d78e4b951fc07e673eeee0b7433090a91fd35a8e",
+      "size_bytes": 90473
+    },
+    {
+      "path": "amem/LICENSE",
+      "sha256": "025a4a7762131be135bc34c8916d82996844f4dce35c53a464149a672dab5001",
+      "size_bytes": 1126
+    },
+    {
+      "path": "amem/README.md",
+      "sha256": "411288846bc456a3e7dbb00e6f879b46a559f3752835aed4023f580cdafbd36e",
+      "size_bytes": 5686
+    },
+    {
+      "path": "amem/analysis/analyze_entrega3.py",
+      "sha256": "c9627abc43b99d2a364299d671cac3b3e435d5f74bf6a28bb9c01a587ac90ef1",
+      "size_bytes": 14696
+    },
+    {
+      "path": "amem/analysis/category_mapping.py",
+      "sha256": "6cfd4533c84feed514f4231fe64e4289440d369df43562a7f938dcef811cbc4e",
+      "size_bytes": 200
+    },
+    {
+      "path": "amem/analysis/entrega3-analysis.json",
+      "sha256": "1d268165deccaa8c8518e9925fe84dfb9b55966401098c8cef06e77cfaf3ad79",
+      "size_bytes": 30425
+    },
+    {
+      "path": "amem/analysis/entrega3-analysis.md",
+      "sha256": "83c7d2bd5434c2b4a0edc9d09761cf7304371b5e586c78ec9ead85a914ca3054",
+      "size_bytes": 2640
+    },
+    {
+      "path": "amem/analysis/estimate_cost.py",
+      "sha256": "6314b7cca873ee368cd218c3d2760f774409d57f48bbe9bb667d63f3e4c3d08a",
+      "size_bytes": 12859
+    },
+    {
+      "path": "amem/analysis/export_article_assets.py",
+      "sha256": "e66a94dfe0a6091388825e487e435f26bb4c29f9643f37f8bfac187606b18db1",
+      "size_bytes": 10548
+    },
+    {
+      "path": "amem/analysis/export_entrega3_assets.py",
+      "sha256": "abb05f8ea02fa7f0f8d4240a72e43d5f104ebb1ec50643e530ec4b8a4f2a56d6",
+      "size_bytes": 12965
+    },
+    {
+      "path": "amem/analysis/make_manifest.py",
+      "sha256": "afe428269b8a479989efa3031ebdb32736c6f688e451a337a5171294564c65b5",
+      "size_bytes": 14304
+    },
+    {
+      "path": "amem/analysis/make_reduced_dataset.py",
+      "sha256": "78a1222db14bd605c81d38ce7f3c0969c3960f5b8e71bf21e61aae77eba4d437",
+      "size_bytes": 2259
+    },
+    {
+      "path": "amem/analysis/make_smoke_dataset.py",
+      "sha256": "1715402257a6b0de04ea0717bb50ab1e186bf73ea9810b5370ba43e43d6ff414",
+      "size_bytes": 1296
+    },
+    {
+      "path": "amem/analysis/relatorio-etapa-2-before.md",
+      "sha256": "ba559f4cbab75868176567dd26e1dc9bf539f10f907f25fac20d29026cbf30fd",
+      "size_bytes": 17844
+    },
+    {
+      "path": "amem/analysis/relatorio-etapa-2-ratio01.md",
+      "sha256": "d16b9638fe1d36e102a695fedf8e4cb9267dfa5a31768f089a2718f531e829fb",
+      "size_bytes": 17217
+    },
+    {
+      "path": "amem/analysis/relatorio-etapa-2.md",
+      "sha256": "59368c3a2c75606df5a8e98221c47c9ccbfeb32664e43e020caf29670c041b29",
+      "size_bytes": 17885
+    },
+    {
+      "path": "amem/analysis/result_validation.py",
+      "sha256": "33c8f875ab836cb9eca36eb9e9b6c0e5f574aececc98eb4963553d3bd9f46ab4",
+      "size_bytes": 7547
+    },
+    {
+      "path": "amem/analysis/summarize_results.py",
+      "sha256": "c498335761a86550088bcb0fe53921aac9c878abb4746b3e3efeb2adf6b6d732",
+      "size_bytes": 20452
+    },
+    {
+      "path": "amem/commands/entrega3_schedule.json",
+      "sha256": "5edb064a2e92a8493386e1ee90bda83b4a23f068d6a0707fd295176c5cbc4190",
+      "size_bytes": 4563
+    },
+    {
+      "path": "amem/data/README.md",
+      "sha256": "6393d34a50adf49bb16397bb0c445cf5b7f7b4a1c4815f2c1fac23d2a39a6dce",
+      "size_bytes": 1720
+    },
+    {
+      "path": "amem/data/locomo10.json",
+      "sha256": "79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4",
+      "size_bytes": 2805274
+    },
+    {
+      "path": "amem/data/locomo_etapa2_reduced_s2.json",
+      "sha256": "ad2c34ec9ee0bb1aa1e4d6d8021f7aa56f719d52d3535d2d2162248d2b7a1853",
+      "size_bytes": 18117
+    },
+    {
+      "path": "amem/data/locomo_smoke_min.json",
+      "sha256": "2d49b8d724eac15d805714c5adfa7ec3fc8d537fcad895d2fc9f38cdbc2ece27",
+      "size_bytes": 4795
+    },
+    {
+      "path": "amem/llm_text_parsers.py",
+      "sha256": "353b77f57ce081ee51789e953ae8604b0c57e6470a332adc0377cf48f76d3a90",
+      "size_bytes": 18138
+    },
+    {
+      "path": "amem/load_dataset.py",
+      "sha256": "b249429a6624e6e79e5e099c90bfcf7ab96c8fd40f3b1074b750dd0b2823661b",
+      "size_bytes": 9058
+    },
+    {
+      "path": "amem/memory_layer.py",
+      "sha256": "b9a5b5797881b25c5524b98a543b22a1bbbcc7f285437ca667a5673e7f293eba",
+      "size_bytes": 41435
+    },
+    {
+      "path": "amem/memory_layer_robust.py",
+      "sha256": "6f8ce8c40f07d49435d0d36ac6ad8c71187a2102da433c4fedae86e3c9bfe8c8",
+      "size_bytes": 23255
+    },
+    {
+      "path": "amem/requirements.lock.txt",
+      "sha256": "063aa96b6481c32b899207d31fa433c2fdfae72d1f158bfe88444c0f9408e264",
+      "size_bytes": 1705
+    },
+    {
+      "path": "amem/requirements.txt",
+      "sha256": "cf293493dd357c6bce7a30fee5df0e6ebe55bea4fe00c90972e8ca11ece9a169",
+      "size_bytes": 246
+    },
+    {
+      "path": "amem/results/before-correction/results_amem_gpt4omini_reduced_s2_k10.json",
+      "sha256": "c1e78191433ceb1ab37903709ed1f593bf29f75d5a3532b57034cd70a2f5a2e1",
+      "size_bytes": 32458
+    },
+    {
+      "path": "amem/results/before-correction/results_amem_gpt4omini_reduced_s2_k3.json",
+      "sha256": "6071b10b8965f1d44ae80856300668038d7457e4c21983295c4fb38183c62c8f",
+      "size_bytes": 32438
+    },
+    {
+      "path": "amem/results/before-correction/results_amem_gpt4omini_reduced_s2_k5.json",
+      "sha256": "972ccfdb2b5f716f6bee95de9fb0809f657abc8c5559f356c6d044f970991304",
+      "size_bytes": 32368
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r1_k10.json",
+      "sha256": "89d94146a34c780aed371f668f48283143ee4abc6d6847c89a882e22f3a6f7ba",
+      "size_bytes": 168342
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r1_k3.json",
+      "sha256": "2985eb4a724399c87aa6329c6ba224f7d0d8f05410b99b736a3e1cd1d129f01a",
+      "size_bytes": 166854
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r1_k5.json",
+      "sha256": "ea5dc18959cb1d2e399762af62f44808b04e1988bb184d2c8e1a542b39e88de6",
+      "size_bytes": 167658
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r2_k10.json",
+      "sha256": "bd257376291305727ca8949026297ed6a1bbc433606356451c65c0b0c5cb1078",
+      "size_bytes": 168319
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r2_k3.json",
+      "sha256": "901b925b2ce64ad718b01f02db497ec433896411e6a8531ef5df17ae4cc4d238",
+      "size_bytes": 166712
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r2_k5.json",
+      "sha256": "0647f2c579bb26507b18789c50bd2ed3aabca642cbbfa78d829bc43bf6832031",
+      "size_bytes": 168251
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r3_k10.json",
+      "sha256": "cc9cc4fe259227523b8ad4f10abfd0ce8205408c084319d79dc6d7330455e551",
+      "size_bytes": 168285
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r3_k3.json",
+      "sha256": "45ede268d36e0fb591d1bc39d75d175f657b1a5a7008fdaeecd26256d53f323a",
+      "size_bytes": 166403
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r3_k5.json",
+      "sha256": "bf595115c41e8bb12729d3c58d4cca46e7c866f33e9cf57223b7d4da6f47e377",
+      "size_bytes": 167432
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r4_k10.json",
+      "sha256": "01de9161dc7c9f0b45c3a78748d2b21df0815b7a522f302e774e5547f957edb0",
+      "size_bytes": 168465
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r4_k3.json",
+      "sha256": "6863b8906ce42d5536064438b4d5624cc757d282aa4bbaff39b6876a0fbef1c9",
+      "size_bytes": 167069
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r4_k5.json",
+      "sha256": "c3cf5d1839b219cabfb8fcdeef9c6068035f5245b1df58db025ecdf2a9416b5e",
+      "size_bytes": 166946
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r5_k10.json",
+      "sha256": "0700a29b8f5444114f696ca948c3aecbf0a4856824588949e39012a497438a6a",
+      "size_bytes": 168820
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r5_k3.json",
+      "sha256": "0748b6d8572b69a67a56392173a48aa2cc34af2ff463f67bd2e765e360588d66",
+      "size_bytes": 166825
+    },
+    {
+      "path": "amem/results/entrega3/results_amem_gpt4omini_sample0_r5_k5.json",
+      "sha256": "4f96af7dba7704f5153fac71e7c452a842b7d76e6aa608cf04d62f4ea0059bbf",
+      "size_bytes": 168272
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_ratio01_k10.json",
+      "sha256": "1ce76ddfd969c38fc7887d4f4e5d2edb03689d1c8ad5e7d95246653d9b392887",
+      "size_bytes": 166420
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_ratio01_k3.json",
+      "sha256": "597597ce3a40fdacaeaaa329a21cbab692205c9a3a02bbb1a4e8c9e0caf1d89c",
+      "size_bytes": 165148
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_ratio01_k5.json",
+      "sha256": "f007f9070b2b28780271087e973b96d7d49cb82a3dc35476ec1f8f15d06ccbd7",
+      "size_bytes": 165551
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_reduced_s2_k10.json",
+      "sha256": "4de38802ef4045b11c610bac3cf01b2dd2da6c5a58b9fad8c9396fb0d1e74cf9",
+      "size_bytes": 33929
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_reduced_s2_k3.json",
+      "sha256": "6596e3915bf665488b6d2fd1eeb68ee3cc59a624ab572ea189953ea0ae91a046",
+      "size_bytes": 32313
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_reduced_s2_k5.json",
+      "sha256": "a21976b0fc86cbc10b6b664c540254fc383b92b2558612f97394177ba644689b",
+      "size_bytes": 33454
+    },
+    {
+      "path": "amem/results/results_amem_gpt4omini_smoke_min_k10.json",
+      "sha256": "d2a7ab67375d2ebf4293489b3dce87c7625b44e54f1b9ef01d83da5aa952d2c2",
+      "size_bytes": 10951
+    },
+    {
+      "path": "amem/run_all_experiments.sh",
+      "sha256": "6f06a6423e6a7156b1ac3de3af8d89628dd4b3f72f6353c4b78b1fb54bb70a04",
+      "size_bytes": 8147
+    },
+    {
+      "path": "amem/run_entrega3.py",
+      "sha256": "b9c6099d508739a8664f269031340eb8169e8fed005677a60bdebf18c021ac4d",
+      "size_bytes": 9475
+    },
+    {
+      "path": "amem/run_etapa2_final.sh",
+      "sha256": "8437e09b111d137e217a3c4dec4b4e948a7841cb6f777f4d5987de9e9a57a70e",
+      "size_bytes": 731
+    },
+    {
+      "path": "amem/run_etapa2_ratio01.sh",
+      "sha256": "4a97e3457d9a93d89469ee4592fe9fac88f642d7e919293c4deb6ccc866166c8",
+      "size_bytes": 829
+    },
+    {
+      "path": "amem/run_etapa2_reduced.sh",
+      "sha256": "ffbd7ee420c4ac909676fd6099806a19f43961d7346f0bfd5e2a7bc636a5b69f",
+      "size_bytes": 754
+    },
+    {
+      "path": "amem/run_etapa2_smoke.sh",
+      "sha256": "8462fa680dc21a1c539a6cb7d3fd811b41f6bd2f676a311c9b560817d4399d4c",
+      "size_bytes": 697
+    },
+    {
+      "path": "amem/run_k_sweep.sh",
+      "sha256": "7dd3a535f67a0a37980da0fbf2df6dfb49f0f0d656b38c80d01e84584078f581",
+      "size_bytes": 5951
+    },
+    {
+      "path": "amem/test_advanced.py",
+      "sha256": "7559e34cdd6a3993bf50bf4795342ec39bce91b1220d56ed206df021196c408a",
+      "size_bytes": 19427
+    },
+    {
+      "path": "amem/test_advanced_robust.py",
+      "sha256": "a2a60d2914844d56fde12ad9c001245f099d7f769eb0e85128026710d6bd4c2f",
+      "size_bytes": 30312
+    },
+    {
+      "path": "amem/tests/test_analyze_entrega3.py",
+      "sha256": "e722c123a338ad14f3ac4f59979bc74617d7cccc4e93e5c0f02d46811f9ec9cc",
+      "size_bytes": 8024
+    },
+    {
+      "path": "amem/tests/test_export_entrega3_assets.py",
+      "sha256": "02173ab69d13cbacb73a7fbad60a00947e55097e1f770a465e4241464721ed4e",
+      "size_bytes": 7156
+    },
+    {
+      "path": "amem/tests/test_result_validation.py",
+      "sha256": "6ae8f7a590fb5255a2633beaaa4ef4c10f6e9870ed7574b6300697acaf8191b8",
+      "size_bytes": 4066
+    },
+    {
+      "path": "amem/tests/test_run_entrega3.py",
+      "sha256": "ba59b44ccb9abb395500105872f406e1550c591ed9d17c8dfe1343132bed8f49",
+      "size_bytes": 6890
+    },
+    {
+      "path": "amem/tests/test_run_metadata.py",
+      "sha256": "3ee0321befce76b1807d9c7efcaa4af0ba147d64688873eac5d23c5deff5ed24",
+      "size_bytes": 5655
+    },
+    {
+      "path": "amem/tests/test_usage_tracking.py",
+      "sha256": "c68b68130c4b4f33cbc610c8932ac64dce92c6ca7473f65ef41bdd438e710ea0",
+      "size_bytes": 4072
+    },
+    {
+      "path": "amem/utils.py",
+      "sha256": "ce89d49ab85084c5fac50d863c6619c521947f24f2214ec77ee3461703fcd911",
+      "size_bytes": 7858
+    },
+    {
+      "path": "article-assets/entrega3/categorias_f1_por_k.csv",
+      "sha256": "f675811563a5490d0862395ea7c1cb3c4c236d47ecfef88e6d8759f71d821949",
+      "size_bytes": 369
+    },
+    {
+      "path": "article-assets/entrega3/contrastes_f1.csv",
+      "sha256": "2004cecbd88e85b9a177f76810c5a5db9e170ace26e7163ab13b392cccb716e0",
+      "size_bytes": 891
+    },
+    {
+      "path": "article-assets/entrega3/contrastes_f1.tex",
+      "sha256": "ce644f336305f198a6f7bff84ba1de105292303c2d60b3bc5666c8c28168696d",
+      "size_bytes": 718
+    },
+    {
+      "path": "article-assets/entrega3/deltas_f1.pdf",
+      "sha256": "4e184f1af4034e37d4e6c4b10e67443709cad358a8f7bbca165c2d79480f0766",
+      "size_bytes": 17090
+    },
+    {
+      "path": "article-assets/entrega3/f1_por_bloco.pdf",
+      "sha256": "fa400ff8dbdd8dd1887c3575d154097a3a75436bdf4de503757e65c809fb7a11",
+      "size_bytes": 17253
+    },
+    {
+      "path": "article-assets/entrega3/f1_por_bloco_k.csv",
+      "sha256": "0c450441515e66bd4e23761cc08a8a95aae622d0c0fbad33e5cddbfcee0ffb4a",
+      "size_bytes": 400
+    },
+    {
+      "path": "article-assets/entrega3/f1_por_bloco_k.tex",
+      "sha256": "d254cd802e3dde882fa093977d8f13de8be12c4c5cd590622969cc8c25c80e65",
+      "size_bytes": 714
+    },
+    {
+      "path": "article-assets/entrega3/metricas_por_k.csv",
+      "sha256": "5b4eb9a1281f88425268933838da609724c90e184afae0cd5821b26fead0ec7b",
+      "size_bytes": 266
+    },
+    {
+      "path": "article-assets/entrega3/metricas_por_k.tex",
+      "sha256": "178d6709631e275a0bc0aafb70f2e574d175db4c1eef74ee943f686857aa5829",
+      "size_bytes": 565
+    },
+    {
+      "path": "article-assets/entrega3/operacionais_por_k.csv",
+      "sha256": "3ba74b981a9d88e63fe07a799a6f4bcbb4b807cc34d6a38d37319f1c888eb1c1",
+      "size_bytes": 344
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "6724d3002227f930abcbd05a399baadfbb193b6b0df639df663af3a57f18d576",
+      "size_bytes": 8453
+    },
+    {
+      "path": "docs/comandos-etapa-2.md",
+      "sha256": "633c89be643f7b659f1c1058ba2981428280c66551c7b77d0913c81382ee4d53",
+      "size_bytes": 7669
+    },
+    {
+      "path": "docs/entrega_3_reprodutibilidade_patrick_santos.pdf",
+      "sha256": "1d9be6edff5231ee192f978f1beab407c0a0f90997773925e1b51e13b0b30be3",
+      "size_bytes": 128231
+    },
+    {
+      "path": "docs/experimento-cinco-blocos/ambiente.md",
+      "sha256": "c40c5497e560d0d5c24580c46e4e43f2e5811778fd3faf75541d13c424012791",
+      "size_bytes": 1398
+    },
+    {
+      "path": "docs/experimento-cinco-blocos/kit-reproducao.md",
+      "sha256": "4d9e202f45c6e4b2c5609547c97447a2702af28cf4ba261112460a96a3f3dae4",
+      "size_bytes": 4196
+    },
+    {
+      "path": "docs/experimento-cinco-blocos/plano.md",
+      "sha256": "dc2d24bb318b7289973a95d4af442f153e6ee6944c844127edf30edbe6ac755d",
+      "size_bytes": 22960
+    },
+    {
+      "path": "docs/experimento-cinco-blocos/protocolo.md",
+      "sha256": "fd97afd6b187a4dde078c61f7f3800d10b759d4383c60b57bea28cd8415e9e55",
+      "size_bytes": 10974
+    },
+    {
+      "path": "docs/manifest-etapa-2.json",
+      "sha256": "7b2b7f6dc498b02568a3d091b3540444855b9aa05f6318f448c4003a0c686a1a",
+      "size_bytes": 15996
+    },
+    {
+      "path": "docs/openai-api-usage-2026-07-07.md",
+      "sha256": "1d06eaaf3c6248547de817d2d05f113ffb8739ab753983d6fcb67d9d8ebc270f",
+      "size_bytes": 1499
+    },
+    {
+      "path": "docs/resultados-antes-pos-correcao.md",
+      "sha256": "8d997d4ed2487b8a84946536bf0f99c73646d05ea1b957c393920501b89e4f27",
+      "size_bytes": 9324
+    },
+    {
+      "path": "docs/resultados-etapa-2-ratio01.md",
+      "sha256": "652b9cffdeb97f522b6dcfe17367c5a8c145ea306fc567fac264f4e74bd25f7d",
+      "size_bytes": 3812
+    },
+    {
+      "path": "docs/resultados-etapa-2.md",
+      "sha256": "1f29394a97287674cbdc05143daabe3c957dbac06d538c90de45d6cdda10d3ec",
+      "size_bytes": 10067
+    },
+    {
+      "path": "entrega_3_reprodutibilidade_patrick_santos.tex",
+      "sha256": "422a317fdfdb955f1926459175ee65d4ebfdb318cd1d11a8e6fbb5a44c3988c1",
+      "size_bytes": 15302
+    }
+  ]
+}

@@ -35,7 +35,8 @@ Foram executados cinco blocos de repetição. Cada bloco avaliou os três nívei
 - `amem/tests/`: testes offline da instrumentação e da análise.
 - `article-assets/entrega3/`: tabelas e figuras derivadas dos JSONs.
 - `docs/experimento-cinco-blocos/`: protocolo, ambiente, plano e inventário.
-- `docs/`: artigos e registros das atividades anteriores.
+- `docs/`: artigos e registros das atividades.
+- `entrega_3_reprodutibilidade_patrick_santos.tex`: fonte LaTeX do artigo atual.
 
 Os resultados históricos são preservados para auditoria. Arquivos anteriores a
 correções metodológicas ficam separados e não substituem os resultados atuais.
@@ -113,14 +114,22 @@ superioridade geral do A-Mem nem substituem uma avaliação no LoCoMo completo.
 ## Documentação
 
 - [Artigo científico atual](docs/entrega_3_reprodutibilidade_patrick_santos.pdf)
+- [Fonte LaTeX do artigo](entrega_3_reprodutibilidade_patrick_santos.tex)
 - [Protocolo do estudo de cinco blocos](docs/experimento-cinco-blocos/protocolo.md)
 - [Inventário do Kit de Reprodução](docs/experimento-cinco-blocos/kit-reproducao.md)
 - [Ambiente de execução](docs/experimento-cinco-blocos/ambiente.md)
+- [Manifesto de hashes](manifest-artifacts.json)
 - [Documentação das atividades anteriores](docs/README.md)
 - [Resultados históricos do primeiro recorte](docs/resultados-etapa-2-ratio01.md)
 
-Somente o PDF do artigo é publicado. O arquivo-fonte do artigo não faz parte do
-repositório público.
+O artigo é publicado em PDF e em fonte LaTeX, permitindo sua inspeção e
+recompilação.
+
+Para recompilar o manuscrito a partir da raiz do repositório:
+
+```bash
+tectonic entrega_3_reprodutibilidade_patrick_santos.tex
+```
 
 ## Segurança, dados e licenças
 
