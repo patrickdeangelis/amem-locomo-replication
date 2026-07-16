@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-07-16T01:16:21.526140Z",
+  "generated_at_utc": "2026-07-16T01:21:14.789216Z",
   "repository": "https://github.com/patrickdeangelis/amem-locomo-replication",
-  "base_artifact_commit": "14ea8759d574eb155a64900a6b269169b3b0f9dc",
+  "base_artifact_commit": "423ba959a52604998087da3b6a81500a968b2f83",
   "article_source_included": true,
   "experiment_matrix": {
     "replicates": [
@@ -468,13 +468,13 @@
     },
     {
       "path": "publications/retrieve-k-five-blocks/article.pdf",
-      "sha256": "ddcbdba4bfdf0e805cd2d044f88279e11f8b0794862e38557ed89ce1eebe3a3f",
-      "size_bytes": 128195
+      "sha256": "6055e9257cdb08594b028c4431c7f45f838b0e40fd3dd7d5106bebc27f074385",
+      "size_bytes": 128308
     },
     {
       "path": "publications/retrieve-k-five-blocks/article.tex",
-      "sha256": "f0f817b58a7e0f9d5f56c800e3bd34ab7d14e20d035760ac6e2ea6ec8ee473ae",
-      "size_bytes": 15282
+      "sha256": "4e9f739f1db8926002e4caa2115201120999ebfcc96a3fd77902184d2bd517bb",
+      "size_bytes": 15356
     },
     {
       "path": "publications/retrieve-k-five-blocks/assets/figures/deltas_f1.pdf",
