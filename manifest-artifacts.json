@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "generated_at_utc": "2026-07-16T01:00:19.371348Z",
+  "generated_at_utc": "2026-07-16T01:16:21.526140Z",
   "repository": "https://github.com/patrickdeangelis/amem-locomo-replication",
-  "base_artifact_commit": "5b28c7a5c1b9b857739ba1df9a4c84209fac93d7",
+  "base_artifact_commit": "14ea8759d574eb155a64900a6b269169b3b0f9dc",
   "article_source_included": true,
   "experiment_matrix": {
     "replicates": [
@@ -23,8 +23,8 @@
   "files": [
     {
       "path": ".gitignore",
-      "sha256": "fa640778bfc0fdcc70048e194ef33652b988f41dc316c33451d62c453eadbeb3",
-      "size_bytes": 485
+      "sha256": "18df14e02a36b022d6b7e8179f1f26652444b6c775d776dbdb44a3a880d10c12",
+      "size_bytes": 347
     },
     {
       "path": "LICENSE-ARTIFACTS.md",
@@ -33,8 +33,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "4419df6991cbcd2cb9eed141fb565963aadce198ff93052f7cf45a63b7f2a72d",
-      "size_bytes": 5114
+      "sha256": "0fe6afec1a61502f11215b7eadc3b4ce40c510bb2c2ced2d6d6a06bd1feacb20",
+      "size_bytes": 5429
     },
     {
       "path": "amem/.env.example",
@@ -407,119 +407,124 @@
       "size_bytes": 7858
     },
     {
-      "path": "article-assets/entrega3/categorias_f1_por_k.csv",
-      "sha256": "f675811563a5490d0862395ea7c1cb3c4c236d47ecfef88e6d8759f71d821949",
-      "size_bytes": 369
+      "path": "experiments/ratio01/README.md",
+      "sha256": "f02caadd324a2da643fc36454ec96aaee19169829c39f7e9165791d081730e0a",
+      "size_bytes": 8594
     },
     {
-      "path": "article-assets/entrega3/contrastes_f1.csv",
-      "sha256": "2004cecbd88e85b9a177f76810c5a5db9e170ace26e7163ab13b392cccb716e0",
-      "size_bytes": 891
-    },
-    {
-      "path": "article-assets/entrega3/contrastes_f1.tex",
-      "sha256": "ce644f336305f198a6f7bff84ba1de105292303c2d60b3bc5666c8c28168696d",
-      "size_bytes": 718
-    },
-    {
-      "path": "article-assets/entrega3/deltas_f1.pdf",
-      "sha256": "4e184f1af4034e37d4e6c4b10e67443709cad358a8f7bbca165c2d79480f0766",
-      "size_bytes": 17090
-    },
-    {
-      "path": "article-assets/entrega3/f1_por_bloco.pdf",
-      "sha256": "fa400ff8dbdd8dd1887c3575d154097a3a75436bdf4de503757e65c809fb7a11",
-      "size_bytes": 17253
-    },
-    {
-      "path": "article-assets/entrega3/f1_por_bloco_k.csv",
-      "sha256": "0c450441515e66bd4e23761cc08a8a95aae622d0c0fbad33e5cddbfcee0ffb4a",
-      "size_bytes": 400
-    },
-    {
-      "path": "article-assets/entrega3/f1_por_bloco_k.tex",
-      "sha256": "d254cd802e3dde882fa093977d8f13de8be12c4c5cd590622969cc8c25c80e65",
-      "size_bytes": 714
-    },
-    {
-      "path": "article-assets/entrega3/metricas_por_k.csv",
-      "sha256": "5b4eb9a1281f88425268933838da609724c90e184afae0cd5821b26fead0ec7b",
-      "size_bytes": 266
-    },
-    {
-      "path": "article-assets/entrega3/metricas_por_k.tex",
-      "sha256": "178d6709631e275a0bc0aafb70f2e574d175db4c1eef74ee943f686857aa5829",
-      "size_bytes": 565
-    },
-    {
-      "path": "article-assets/entrega3/operacionais_por_k.csv",
-      "sha256": "3ba74b981a9d88e63fe07a799a6f4bcbb4b807cc34d6a38d37319f1c888eb1c1",
-      "size_bytes": 344
-    },
-    {
-      "path": "docs/README.md",
-      "sha256": "6724d3002227f930abcbd05a399baadfbb193b6b0df639df663af3a57f18d576",
-      "size_bytes": 8453
-    },
-    {
-      "path": "docs/comandos-etapa-2.md",
-      "sha256": "633c89be643f7b659f1c1058ba2981428280c66551c7b77d0913c81382ee4d53",
-      "size_bytes": 7669
-    },
-    {
-      "path": "docs/entrega_3_reprodutibilidade_patrick_santos.pdf",
-      "sha256": "1d9be6edff5231ee192f978f1beab407c0a0f90997773925e1b51e13b0b30be3",
-      "size_bytes": 128231
-    },
-    {
-      "path": "docs/experimento-cinco-blocos/ambiente.md",
-      "sha256": "c40c5497e560d0d5c24580c46e4e43f2e5811778fd3faf75541d13c424012791",
-      "size_bytes": 1398
-    },
-    {
-      "path": "docs/experimento-cinco-blocos/kit-reproducao.md",
-      "sha256": "4d9e202f45c6e4b2c5609547c97447a2702af28cf4ba261112460a96a3f3dae4",
-      "size_bytes": 4196
-    },
-    {
-      "path": "docs/experimento-cinco-blocos/plano.md",
-      "sha256": "dc2d24bb318b7289973a95d4af442f153e6ee6944c844127edf30edbe6ac755d",
-      "size_bytes": 22960
-    },
-    {
-      "path": "docs/experimento-cinco-blocos/protocolo.md",
-      "sha256": "fd97afd6b187a4dde078c61f7f3800d10b759d4383c60b57bea28cd8415e9e55",
-      "size_bytes": 10974
-    },
-    {
-      "path": "docs/manifest-etapa-2.json",
-      "sha256": "7b2b7f6dc498b02568a3d091b3540444855b9aa05f6318f448c4003a0c686a1a",
-      "size_bytes": 15996
-    },
-    {
-      "path": "docs/openai-api-usage-2026-07-07.md",
+      "path": "experiments/ratio01/api-usage.md",
       "sha256": "1d06eaaf3c6248547de817d2d05f113ffb8739ab753983d6fcb67d9d8ebc270f",
       "size_bytes": 1499
     },
     {
-      "path": "docs/resultados-antes-pos-correcao.md",
-      "sha256": "8d997d4ed2487b8a84946536bf0f99c73646d05ea1b957c393920501b89e4f27",
-      "size_bytes": 9324
+      "path": "experiments/ratio01/before-after-correction.md",
+      "sha256": "8d41d55fdd0b3305de5c1927e30fbc1e0d0cb92402b42cfbd6c7b3a16d73c168",
+      "size_bytes": 9318
     },
     {
-      "path": "docs/resultados-etapa-2-ratio01.md",
+      "path": "experiments/ratio01/commands.md",
+      "sha256": "633c89be643f7b659f1c1058ba2981428280c66551c7b77d0913c81382ee4d53",
+      "size_bytes": 7669
+    },
+    {
+      "path": "experiments/ratio01/manifest.json",
+      "sha256": "7b2b7f6dc498b02568a3d091b3540444855b9aa05f6318f448c4003a0c686a1a",
+      "size_bytes": 15996
+    },
+    {
+      "path": "experiments/ratio01/reduced-results.md",
+      "sha256": "3274fa7322bb2f9ed89de77cc15558fe3708963d5bc36137f32015e2c79a3b81",
+      "size_bytes": 10010
+    },
+    {
+      "path": "experiments/ratio01/results.md",
       "sha256": "652b9cffdeb97f522b6dcfe17367c5a8c145ea306fc567fac264f4e74bd25f7d",
       "size_bytes": 3812
     },
     {
-      "path": "docs/resultados-etapa-2.md",
-      "sha256": "1f29394a97287674cbdc05143daabe3c957dbac06d538c90de45d6cdda10d3ec",
-      "size_bytes": 10067
+      "path": "experiments/retrieve-k-five-blocks/README.md",
+      "sha256": "5ee626c4c742f4e90f2ed7a315160e12048e04f5a52308d60b148c44a28e7625",
+      "size_bytes": 1123
     },
     {
-      "path": "entrega_3_reprodutibilidade_patrick_santos.tex",
-      "sha256": "422a317fdfdb955f1926459175ee65d4ebfdb318cd1d11a8e6fbb5a44c3988c1",
-      "size_bytes": 15302
+      "path": "experiments/retrieve-k-five-blocks/environment.md",
+      "sha256": "c40c5497e560d0d5c24580c46e4e43f2e5811778fd3faf75541d13c424012791",
+      "size_bytes": 1398
+    },
+    {
+      "path": "experiments/retrieve-k-five-blocks/plan.md",
+      "sha256": "dc2d24bb318b7289973a95d4af442f153e6ee6944c844127edf30edbe6ac755d",
+      "size_bytes": 22960
+    },
+    {
+      "path": "experiments/retrieve-k-five-blocks/protocol.md",
+      "sha256": "fd97afd6b187a4dde078c61f7f3800d10b759d4383c60b57bea28cd8415e9e55",
+      "size_bytes": 10974
+    },
+    {
+      "path": "experiments/retrieve-k-five-blocks/reproduction-kit.md",
+      "sha256": "1f71149fa796f2113559ccc012276fa885910706ce4544d6f8e6ce3617145732",
+      "size_bytes": 4490
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/article.pdf",
+      "sha256": "ddcbdba4bfdf0e805cd2d044f88279e11f8b0794862e38557ed89ce1eebe3a3f",
+      "size_bytes": 128195
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/article.tex",
+      "sha256": "f0f817b58a7e0f9d5f56c800e3bd34ab7d14e20d035760ac6e2ea6ec8ee473ae",
+      "size_bytes": 15282
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/assets/figures/deltas_f1.pdf",
+      "sha256": "4e184f1af4034e37d4e6c4b10e67443709cad358a8f7bbca165c2d79480f0766",
+      "size_bytes": 17090
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/assets/figures/f1_por_bloco.pdf",
+      "sha256": "fa400ff8dbdd8dd1887c3575d154097a3a75436bdf4de503757e65c809fb7a11",
+      "size_bytes": 17253
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/assets/tables/categorias_f1_por_k.csv",
+      "sha256": "f675811563a5490d0862395ea7c1cb3c4c236d47ecfef88e6d8759f71d821949",
+      "size_bytes": 369
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/assets/tables/contrastes_f1.csv",
+      "sha256": "2004cecbd88e85b9a177f76810c5a5db9e170ace26e7163ab13b392cccb716e0",
+      "size_bytes": 891
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/assets/tables/contrastes_f1.tex",
+      "sha256": "ce644f336305f198a6f7bff84ba1de105292303c2d60b3bc5666c8c28168696d",
+      "size_bytes": 718
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/assets/tables/f1_por_bloco_k.csv",
+      "sha256": "0c450441515e66bd4e23761cc08a8a95aae622d0c0fbad33e5cddbfcee0ffb4a",
+      "size_bytes": 400
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/assets/tables/f1_por_bloco_k.tex",
+      "sha256": "d254cd802e3dde882fa093977d8f13de8be12c4c5cd590622969cc8c25c80e65",
+      "size_bytes": 714
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/assets/tables/metricas_por_k.csv",
+      "sha256": "5b4eb9a1281f88425268933838da609724c90e184afae0cd5821b26fead0ec7b",
+      "size_bytes": 266
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/assets/tables/metricas_por_k.tex",
+      "sha256": "178d6709631e275a0bc0aafb70f2e574d175db4c1eef74ee943f686857aa5829",
+      "size_bytes": 565
+    },
+    {
+      "path": "publications/retrieve-k-five-blocks/assets/tables/operacionais_por_k.csv",
+      "sha256": "3ba74b981a9d88e63fe07a799a6f4bcbb4b807cc34d6a38d37319f1c888eb1c1",
+      "size_bytes": 344
     }
   ]
 }

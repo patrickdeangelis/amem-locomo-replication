@@ -58,11 +58,11 @@ O escopo considerado como planejado para esta Entrega 2 e a execucao `--ratio 0.
 - Smoke minimo deterministico preservado em `amem/data/locomo_smoke_min.json`: 1 sample, 1 sessao, 8 turnos, 3 perguntas, executado com `retrieve_k=10`.
 - Subamostra experimental reduzida preservada em `amem/data/locomo_etapa2_reduced_s2.json`: 1 sample, 2 sessoes, 35 turnos, 20 perguntas, com evidencia restrita as sessoes preservadas.
 - A varredura `retrieve_k=3,5,10` sobre a subamostra reduzida foi preservada em duas versoes: antes da correcao, sem seed, temperatura 0.7 e sem metadados, em `amem/results/before-correction/`; e pos-correcao, com seed=0, temperatura 0.0 e bloco `metadata`, em `amem/results/`.
-- A execucao principal planejada usou `--ratio 0.1` sobre `data/locomo10.json`, mantendo a rodada reduzida intacta. O recorte selecionou o sample 0 inteiro, com 19 sessoes, 419 turnos e 199 perguntas. Os resultados estao em `amem/results/results_amem_gpt4omini_ratio01_k{3,5,10}.json`, e o relatorio correspondente esta em `resultados-etapa-2-ratio01.md` e `amem/analysis/relatorio-etapa-2-ratio01.md`.
+- A execucao principal planejada usou `--ratio 0.1` sobre `data/locomo10.json`, mantendo a rodada reduzida intacta. O recorte selecionou o sample 0 inteiro, com 19 sessoes, 419 turnos e 199 perguntas. Os resultados estao em `amem/results/results_amem_gpt4omini_ratio01_k{3,5,10}.json`, e o relatorio correspondente esta em `results.md` e `amem/analysis/relatorio-etapa-2-ratio01.md`.
 - Na reexecucao `--ratio 0.1`, `k=3`, `k=5` e `k=10` reutilizaram o cache existente de 419 memorias.
-- Resultados principais consolidados em `resultados-etapa-2-ratio01.md` e `amem/analysis/relatorio-etapa-2-ratio01.md`. A rodada reduzida permanece em `resultados-etapa-2.md`, `resultados-antes-pos-correcao.md` e `amem/analysis/relatorio-etapa-2.md` apenas como historico.
+- Resultados principais consolidados em `results.md` e `amem/analysis/relatorio-etapa-2-ratio01.md`. A rodada reduzida permanece em `reduced-results.md`, `before-after-correction.md` e `amem/analysis/relatorio-etapa-2.md` apenas como historico.
 - Uso/custo medido pela OpenAI API para o projeto no dia da execucao: 4.228 chamadas, 5.789.342 tokens de entrada, 106.885 tokens de saida e US$ 0.9153483 em 2026-07-07. A granularidade do export e diaria, portanto o valor pode incluir tentativas e smoke tests do mesmo dia.
-- Manifest auditavel em `manifest-etapa-2.json` com hashes sha256 dos artefatos publicados, incluindo JSONs `ratio01`, relatorios, scripts, comandos, parametros e tempos observados. Logs e caches ficaram fora do repositorio publico.
+- Manifest auditavel preservado em `manifest.json` com hashes sha256 dos artefatos publicados, incluindo JSONs `ratio01`, relatorios, scripts, comandos, parametros e tempos observados. Logs e caches ficaram fora do repositorio publico.
 
 Decisao atual:
 
@@ -84,16 +84,16 @@ O script `test_advanced_robust.py` foi corrigido para suportar reprodutibilidade
 - O bloco `metadata` agora e gravado dentro de cada JSON de saida: seed, temperaturas, `retrieve_k`, hash sha256 do dataset, commit do repositorio, comando executado, timestamps e duracao.
 - O cache de memorias agora e validado pelo hash sha256 do dataset, evitando reutilizacao indevida quando um arquivo e renomeado mantendo o mesmo stem. Na execucao reduzida pos-correcao, o cache legado foi adotado e marcado com `dataset_hash.txt`; na execucao `--ratio 0.1`, o cache novo ficou em `cached_memories_robust_openai_gpt-4o-mini_locomo10_79fa87e90f04`.
 
-Os tres JSONs `results_amem_gpt4omini_ratio01_k*.json` sao a evidencia principal atual da Etapa 2. Os JSONs `results_amem_gpt4omini_reduced_s2_k*.json` preservam a rodada reduzida pos-correcao (seed=0, temp 0.0, com bloco `metadata`), e os JSONs da execucao anterior (sem seed, temp 0.7, sem metadados) estao preservados em `amem/results/before-correction/`. A comparacao entre as duas execucoes reduzidas esta em `resultados-antes-pos-correcao.md`, mas suas conclusoes ficam restritas a subamostra historica de 20 perguntas.
+Os tres JSONs `results_amem_gpt4omini_ratio01_k*.json` sao a evidencia principal atual da Etapa 2. Os JSONs `results_amem_gpt4omini_reduced_s2_k*.json` preservam a rodada reduzida pos-correcao (seed=0, temp 0.0, com bloco `metadata`), e os JSONs da execucao anterior (sem seed, temp 0.7, sem metadados) estao preservados em `amem/results/before-correction/`. A comparacao entre as duas execucoes reduzidas esta em `before-after-correction.md`, mas suas conclusoes ficam restritas a subamostra historica de 20 perguntas.
 
 ## Artefatos
 
-- `comandos-etapa-2.md`: comandos executados e comandos pendentes.
-- `resultados-etapa-2-ratio01.md`: resultados principais da execucao planejada `--ratio 0.1` sobre o sample 0 inteiro do `locomo10.json`.
-- `resultados-etapa-2.md`: historico da rodada reduzida pos-correcao, analise por categoria e ameacas a validade.
-- `resultados-antes-pos-correcao.md`: comparacao entre a execucao anterior (sem seed, temp 0.7) e a pos-correcao (seed=0, temp 0.0), com problemas encontrados e impacto nas conclusoes.
-- `manifest-etapa-2.json`: manifest auditavel com hashes dos artefatos principais, comandos, parametros e tempos.
-- `openai-api-usage-2026-07-07.md`: resumo sanitizado dos exports de custo e uso da OpenAI API para o dia da execucao.
+- `commands.md`: comandos executados e comandos pendentes.
+- `results.md`: resultados principais da execucao planejada `--ratio 0.1` sobre o sample 0 inteiro do `locomo10.json`.
+- `reduced-results.md`: historico da rodada reduzida pos-correcao, analise por categoria e ameacas a validade.
+- `before-after-correction.md`: comparacao entre a execucao anterior (sem seed, temp 0.7) e a pos-correcao (seed=0, temp 0.0), com problemas encontrados e impacto nas conclusoes.
+- `manifest.json`: snapshot auditavel do layout original, com hashes dos artefatos principais, comandos, parametros e tempos.
+- `api-usage.md`: resumo sanitizado dos exports de custo e uso da OpenAI API para o dia da execucao.
 - `article-assets/`, `figures/` e `entrega_2_reprodutibilidade_patrick_santos.tex`: derivados locais usados para compor o artigo da Entrega 2; nao fazem parte do pacote publico, mas podem ser regenerados a partir dos JSONs e scripts de analise.
 - `amem/analysis/relatorio-etapa-2.md`: relatorio de analise pos-correcao gerado por `summarize_results.py`.
 - `amem/analysis/relatorio-etapa-2-ratio01.md`: relatorio de analise da execucao `--ratio 0.1`.
@@ -107,4 +107,8 @@ Os tres JSONs `results_amem_gpt4omini_ratio01_k*.json` sao a evidencia principal
 - `amem/analysis/summarize_results.py`: analise agregada, por categoria, por pergunta, deltas pareados e IC bootstrap.
 - `amem/analysis/export_article_assets.py`: exporta tabelas CSV e graficos PDF para o artigo a partir dos JSONs `ratio01`.
 - `amem/analysis/estimate_cost.py`: estimador de custo/tempo calibrado na execucao reduzida.
-- `amem/analysis/make_manifest.py`: gerador do `manifest-etapa-2.json`.
+- `amem/analysis/make_manifest.py`: gerador do manifesto historico da Etapa 2.
+
+O `manifest.json` preserva os caminhos existentes quando esse estudo foi
+publicado. Para os caminhos e hashes da organização atual do repositório,
+consulte [`../../manifest-artifacts.json`](../../manifest-artifacts.json).

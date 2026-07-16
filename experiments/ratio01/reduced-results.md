@@ -1,6 +1,6 @@
 # Resultados da Etapa 2
 
-Este arquivo registra a rodada reduzida de depuracao. A evidencia principal da Entrega 2 esta em `resultados-etapa-2-ratio01.md`, baseada na execucao planejada `--ratio 0.1`.
+Este arquivo registra a rodada reduzida de depuracao. A evidencia principal da Entrega 2 esta em `results.md`, baseada na execucao planejada `--ratio 0.1`.
 
 Data da execucao: 2026-07-07.
 
@@ -24,7 +24,7 @@ Estes resultados documentam uma execucao experimental reduzida. Eles nao estimam
 
 ## Configuracoes
 
-Estes resultados referem-se a execucao pos-correcao, com parametros de reproducao registrados. A execucao anterior, sem seed e com temperatura 0.7, esta preservada em `amem/results/before-correction/` e comparada em `resultados-antes-pos-correcao.md`.
+Estes resultados referem-se a execucao pos-correcao, com parametros de reproducao registrados. A execucao anterior, sem seed e com temperatura 0.7, esta preservada em `amem/results/before-correction/` e comparada em `before-after-correction.md`.
 
 | Campo | Valor |
 | --- | --- |
@@ -59,7 +59,7 @@ Com a execucao reprodutivel (seed=0, temp=0.0), a diferenca entre k=3 e k=10 tor
 - O IC bootstrap de 95% para a media de F1 em `k=3` e [0.144, 0.454]; em `k=10` e [0.326, 0.650]. A sobreposicao existe, mas e menor do que na execucao anterior.
 - O delta pareado entre `k=3` e `k=10` em F1 tem IC 95% de [0.059, 0.352], que nao cruza zero. Isso indica evidencia fraca, dado n=20, de que k=10 supera k=3.
 
-A execucao anterior, sem seed e com temperatura 0.7, mostrava delta de `0.027` com IC [-0.035, 0.097], cruzando zero. A correcao de reprodutibilidade mudou a leitura estatistica de "indistinguivel" para "fracamente significante". A comparacao completa esta em `resultados-antes-pos-correcao.md`.
+A execucao anterior, sem seed e com temperatura 0.7, mostrava delta de `0.027` com IC [-0.035, 0.097], cruzando zero. A correcao de reprodutibilidade mudou a leitura estatistica de "indistinguivel" para "fracamente significante". A comparacao completa esta em `before-after-correction.md`.
 
 ## Analise por categoria
 
@@ -100,7 +100,7 @@ Para cada par (A para B), o diff corresponde a metrica(B) menos metrica(A) em ca
 | k=3 para k=10 | F1 | 0.1914 | [0.059, 0.352] | 7 | 2 | 11 |
 | k=5 para k=10 | F1 | 0.0430 | [0.000, 0.092] | 3 | 0 | 17 |
 
-Na execucao pos-correcao, os IC de F1 para k=3 para k=5 e k=3 para k=10 nao cruzam zero, indicando evidencia fraca, dado n=20, de que aumentar k melhora o F1. O delta de k=5 para k=10 toca zero; portanto, o ganho adicional de 5 para 10 e marginal. A comparacao com a execucao anterior esta em `resultados-antes-pos-correcao.md`.
+Na execucao pos-correcao, os IC de F1 para k=3 para k=5 e k=3 para k=10 nao cruzam zero, indicando evidencia fraca, dado n=20, de que aumentar k melhora o F1. O delta de k=5 para k=10 toca zero; portanto, o ganho adicional de 5 para 10 e marginal. A comparacao com a execucao anterior esta em `before-after-correction.md`.
 
 ## Artefatos gerados
 
@@ -116,8 +116,8 @@ Na execucao pos-correcao, os IC de F1 para k=3 para k=5 e k=3 para k=10 nao cruz
 - `amem/analysis/relatorio-etapa-2.md` (pos-correcao)
 - `amem/analysis/relatorio-etapa-2-before.md` (antes, preservado)
 - `amem/run_etapa2_reduced.sh`
-- `manifest-etapa-2.json`
-- `resultados-antes-pos-correcao.md`
+- `manifest.json`
+- `before-after-correction.md`
 
 ## Observacoes
 
@@ -131,7 +131,7 @@ Na execucao pos-correcao, os IC de F1 para k=3 para k=5 e k=3 para k=10 nao cruz
 - A subamostra reduzida nao substitui uma reproducao completa do LoCoMo.
 - A amostra vem de apenas um dialogo e duas sessoes. Nao ha variabilidade entre dialogos nem entre dias.
 - 20 perguntas produzem IC bootstrap largos; mesmo o delta entre k=3 e k=10 (IC [0.059, 0.352]) deve ser lido como evidencia fraca, nao conclusao robusta.
-- A execucao pos-correcao e reprodutivel no passo de resposta (seed=0, temp 0.0). A execucao anterior nao era, pois nao usava seed e operava com temp 0.7. A sensibilidade dos resultados a essa mudanca tambem e um achado de reprodutibilidade, documentado em `resultados-antes-pos-correcao.md`.
+- A execucao pos-correcao e reprodutivel no passo de resposta (seed=0, temp 0.0). A execucao anterior nao era, pois nao usava seed e operava com temp 0.7. A sensibilidade dos resultados a essa mudanca tambem e um achado de reprodutibilidade, documentado em `before-after-correction.md`.
 - A categoria 5 (adversarial) tem exact match altamente sensivel a ordenacao das opcoes, que a seed torna deterministica mas nao resolve como problema de design.
 - O cache de memorias foi criado sem seed (a criacao de memoria usa temperatura 0.7 no controlador LLM, nao afetada por `--seed`/`--temperature`); ele e deterministico por estar congelado em disco, nao por ser semeado.
 - A comparacao entre `retrieve_k` deve ser apresentada como observacao com IC, nao como ranking definitivo.

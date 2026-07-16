@@ -13,10 +13,10 @@ regenerar a análise do experimento sem repetir chamadas à OpenAI API.
 - `amem/analysis/`: validação, análise estatística e exportação de derivados.
 - `amem/tests/`: testes offline da instrumentação e da análise.
 - `amem/requirements.lock.txt`: versões diretas e transitivas do ambiente.
-- `article-assets/entrega3/`: tabelas e figuras regeneráveis.
-- `docs/experimento-cinco-blocos/`: protocolo, ambiente e planejamento.
-- `docs/entrega_3_reprodutibilidade_patrick_santos.pdf`: artigo científico.
-- `entrega_3_reprodutibilidade_patrick_santos.tex`: fonte LaTeX do artigo.
+- `experiments/retrieve-k-five-blocks/`: protocolo, ambiente e planejamento.
+- `publications/retrieve-k-five-blocks/assets/`: tabelas e figuras regeneráveis.
+- `publications/retrieve-k-five-blocks/article.pdf`: artigo científico.
+- `publications/retrieve-k-five-blocks/article.tex`: fonte LaTeX do artigo.
 
 O artigo integra o pacote público em PDF e em fonte LaTeX, o que permite
 inspecionar e recompilar o manuscrito.
@@ -36,7 +36,15 @@ python analysis/analyze_entrega3.py results/entrega3/*.json \
 
 python analysis/export_entrega3_assets.py \
   analysis/entrega3-analysis.json \
-  --output-dir ../article-assets/entrega3
+  --output-dir /tmp/amem-article-assets
+
+cp /tmp/amem-article-assets/*.pdf \
+  ../publications/retrieve-k-five-blocks/assets/figures/
+cp /tmp/amem-article-assets/*.csv /tmp/amem-article-assets/*.tex \
+  ../publications/retrieve-k-five-blocks/assets/tables/
+
+cd ../publications/retrieve-k-five-blocks
+tectonic article.tex
 ```
 
 Esses passos não exigem chave da OpenAI nem geram custo de API.
@@ -104,8 +112,8 @@ O repositório oficial é:
 https://github.com/patrickdeangelis/amem-locomo-replication
 
 O código, os dados, os quinze resultados e os derivados foram publicados no
-commit `5b28c7a5c1b9`. A atualização seguinte acrescenta o PDF final, o fonte
-LaTeX do artigo e o manifesto de hashes.
+commit `5b28c7a5c1b9`. O artigo final em PDF e LaTeX e o manifesto de hashes
+foram publicados no commit `14ea875`.
 
 Antes da submissão final ainda é necessário:
 

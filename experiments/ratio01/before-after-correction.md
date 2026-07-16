@@ -1,6 +1,6 @@
 # Resultados antes e apos a correcao
 
-Este arquivo registra o historico de reprodutibilidade da rodada reduzida. A evidencia principal da Entrega 2 esta em `resultados-etapa-2-ratio01.md`, baseada na execucao planejada `--ratio 0.1`.
+Este arquivo registra o historico de reprodutibilidade da rodada reduzida. A evidencia principal da Entrega 2 esta em `results.md`, baseada na execucao planejada `--ratio 0.1`.
 
 Data: 2026-07-07.
 
@@ -17,7 +17,7 @@ A revisao por subagentes identificou seis problemas na execucao original. A tabe
 | 3 | JSONs de resultado sem bloco de metadados | Impossivel auditar seed, temperatura, hash do dataset, commit ou comando a partir do proprio JSON | O script agora grava `metadata` (seed, temperaturas, retrieve_k, sha256 do dataset, commit, comando, timestamps, duracao) |
 | 4 | Cache de memorias nomeado apenas por `dataset_stem` | Renomear um dataset mantendo o stem poderia reutilizar cache de conteudo diferente | O script agora valida o cache pelo sha256 do dataset. Na execucao atual, o cache legado foi adotado e marcado com `dataset_hash.txt`; novos caches podem usar o hash no nome do diretorio |
 | 5 | Falta analise por categoria, por pergunta, deltas pareados e IC bootstrap | A interpretacao tratava diferencas pequenas como conclusao sem quantificar incerteza | `analysis/summarize_results.py` reescrito com todas as analises e IC bootstrap |
-| 6 | Falta manifest auditavel versionavel | Nao havia ponte versionada para rastreabilidade dos resultados e logs brutos | `manifest-etapa-2.json` com sha256 dos artefatos versionados, commit, comandos, parametros e tempos |
+| 6 | Falta manifest auditavel versionavel | Nao havia ponte versionada para rastreabilidade dos resultados e logs brutos | manifesto historico com sha256 dos artefatos versionados, commit, comandos, parametros e tempos |
 
 ## Configuracoes das duas execucoes
 
@@ -105,7 +105,7 @@ Os tres JSONs pos-correcao contem, no proprio arquivo, o bloco `metadata`:
 | results_amem_gpt4omini_reduced_s2_k5.json | 0 | 0.0 | 0.5 | 5 | 0c8039f28fdc | ad2c34ec9ee0 | 107.8 |
 | results_amem_gpt4omini_reduced_s2_k10.json | 0 | 0.0 | 0.5 | 10 | 0c8039f28fdc | ad2c34ec9ee0 | 93.4 |
 
-Os JSONs da execucao anterior foram preservados em `amem/results/before-correction/` para auditoria. O `manifest-etapa-2.json` registra os hashes dos arquivos antes e pos-correcao.
+Os JSONs da execucao anterior foram preservados em `amem/results/before-correction/` para auditoria. O `manifest.json` registra os hashes dos arquivos antes e pos-correcao no layout original.
 
 ## Licoes de reprodutibilidade
 
@@ -121,4 +121,4 @@ Os JSONs da execucao anterior foram preservados em `amem/results/before-correcti
 - `amem/results/before-correction/results_amem_gpt4omini_reduced_s2_k{3,5,10}.json`: execucao antes, preservada para comparacao.
 - `amem/analysis/relatorio-etapa-2.md`: relatorio de analise da execucao pos-correcao.
 - `amem/analysis/relatorio-etapa-2-before.md`: relatorio de analise da execucao anterior.
-- `docs/manifest-etapa-2.json`: manifest auditavel com hashes pos-correcao.
+- `manifest.json`: snapshot auditavel com hashes pos-correcao no layout original.

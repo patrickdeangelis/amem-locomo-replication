@@ -33,10 +33,10 @@ Foram executados cinco blocos de repetição. Cada bloco avaliou os três nívei
 - `amem/results/entrega3/`: quinze resultados brutos do estudo de cinco blocos.
 - `amem/analysis/`: análise estatística, exportadores e validadores.
 - `amem/tests/`: testes offline da instrumentação e da análise.
-- `article-assets/entrega3/`: tabelas e figuras derivadas dos JSONs.
-- `docs/experimento-cinco-blocos/`: protocolo, ambiente, plano e inventário.
-- `docs/`: artigos e registros das atividades.
-- `entrega_3_reprodutibilidade_patrick_santos.tex`: fonte LaTeX do artigo atual.
+- `experiments/retrieve-k-five-blocks/`: documentação do experimento atual.
+- `experiments/ratio01/`: documentação e manifesto do estudo anterior.
+- `publications/retrieve-k-five-blocks/`: artigo em PDF e LaTeX, tabelas e figuras.
+- `manifest-artifacts.json`: hashes dos artefatos no estado atual do repositório.
 
 Os resultados históricos são preservados para auditoria. Arquivos anteriores a
 correções metodológicas ficam separados e não substituem os resultados atuais.
@@ -65,7 +65,12 @@ python analysis/analyze_entrega3.py results/entrega3/*.json \
 
 python analysis/export_entrega3_assets.py \
   analysis/entrega3-analysis.json \
-  --output-dir ../article-assets/entrega3
+  --output-dir /tmp/amem-article-assets
+
+cp /tmp/amem-article-assets/*.pdf \
+  ../publications/retrieve-k-five-blocks/assets/figures/
+cp /tmp/amem-article-assets/*.csv /tmp/amem-article-assets/*.tex \
+  ../publications/retrieve-k-five-blocks/assets/tables/
 ```
 
 Os resultados regenerados podem ser comparados com
@@ -113,22 +118,24 @@ superioridade geral do A-Mem nem substituem uma avaliação no LoCoMo completo.
 
 ## Documentação
 
-- [Artigo científico atual](docs/entrega_3_reprodutibilidade_patrick_santos.pdf)
-- [Fonte LaTeX do artigo](entrega_3_reprodutibilidade_patrick_santos.tex)
-- [Protocolo do estudo de cinco blocos](docs/experimento-cinco-blocos/protocolo.md)
-- [Inventário do Kit de Reprodução](docs/experimento-cinco-blocos/kit-reproducao.md)
-- [Ambiente de execução](docs/experimento-cinco-blocos/ambiente.md)
+- [Experimento atual](experiments/retrieve-k-five-blocks/README.md)
+- [Artigo científico atual](publications/retrieve-k-five-blocks/article.pdf)
+- [Fonte LaTeX do artigo](publications/retrieve-k-five-blocks/article.tex)
+- [Protocolo do estudo de cinco blocos](experiments/retrieve-k-five-blocks/protocol.md)
+- [Inventário do Kit de Reprodução](experiments/retrieve-k-five-blocks/reproduction-kit.md)
+- [Ambiente de execução](experiments/retrieve-k-five-blocks/environment.md)
 - [Manifesto de hashes](manifest-artifacts.json)
-- [Documentação das atividades anteriores](docs/README.md)
-- [Resultados históricos do primeiro recorte](docs/resultados-etapa-2-ratio01.md)
+- [Estudo anterior com `ratio=0.1`](experiments/ratio01/README.md)
+- [Resultados históricos do primeiro recorte](experiments/ratio01/results.md)
 
 O artigo é publicado em PDF e em fonte LaTeX, permitindo sua inspeção e
 recompilação.
 
-Para recompilar o manuscrito a partir da raiz do repositório:
+Para recompilar o manuscrito:
 
 ```bash
-tectonic entrega_3_reprodutibilidade_patrick_santos.tex
+cd publications/retrieve-k-five-blocks
+tectonic article.tex
 ```
 
 ## Segurança, dados e licenças

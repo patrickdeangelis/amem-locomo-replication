@@ -121,7 +121,7 @@ As médias de F1 foram 0,2676 (DP 0,0108) para \(k=3\), 0,2943 (DP 0,0165) para 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth]{article-assets/entrega3/f1_por_bloco.pdf}
+\includegraphics[width=\columnwidth]{assets/figures/f1_por_bloco.pdf}
 \caption{F1 médio por bloco e valor de \(k\) no \texttt{sample 0}.}
 \label{fig:f1-bloco}
 \end{figure}
@@ -153,14 +153,14 @@ Shapiro-Wilk produziu \(p=0,146\), \(p=0,406\) e \(p=0,381\) para 3--5, 3--10 e 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\columnwidth]{article-assets/entrega3/deltas_f1.pdf}
+\includegraphics[width=\columnwidth]{assets/figures/deltas_f1.pdf}
 \caption{Deltas pareados de F1 por bloco.}
 \label{fig:deltas}
 \end{figure}
 
 \subsection{Métricas secundárias e categorias}
 
-\input{article-assets/entrega3/metricas_por_k.tex}
+\input{assets/tables/metricas_por_k.tex}
 
 Todas as métricas agregadas cresceram de \(k=3\) para \(k=10\). Por exemplo, exact match passou de 0,0935 para 0,1457; METEOR, de 0,1990 para 0,2731; e SBERT, de 0,4381 para 0,5274.
 
@@ -218,7 +218,7 @@ O código-base usa MIT; o LoCoMo, CC BY-NC 4.0. Artigo, documentação e derivad
 
 O kit contém o código usado, ambiente travado, dataset, agenda, 15 JSONs, análise, testes, tabelas, figuras, protocolo e o artigo final em PDF e em fonte \LaTeX. A publicação do fonte permite inspecionar e recompilar o manuscrito, enquanto os resultados e ativos derivados permanecem rastreáveis pelo manifesto de hashes.
 
-O ambiente foi macOS 26.4 arm64 em MacBook Pro com Apple M1 Pro, 10 núcleos, 16 GB de RAM e Python 3.11.15. Detalhes estão em \path{docs/experimento-cinco-blocos/ambiente.md}.
+O ambiente foi macOS 26.4 arm64 em MacBook Pro com Apple M1 Pro, 10 núcleos, 16 GB de RAM e Python 3.11.15. Detalhes estão em \path{experiments/retrieve-k-five-blocks/environment.md}.
 
 Após clonar o repositório indicado, os comandos abaixo instalam o ambiente, executam os testes públicos e regeneram análise e derivados:
 
