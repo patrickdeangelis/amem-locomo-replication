@@ -106,19 +106,49 @@ class RobustOpenAIController(RobustBaseLLMController):
         if api_key is None:
             raise ValueError("OpenAI API key not found. Set OPENAI_API_KEY environment variable.")
         self.client = OpenAI(api_key=api_key)
+        self._usage = {
+            "requests": 0,
+            "attempts_total": 0,
+            "failed_attempts": 0,
+            "input_tokens": 0,
+            "cached_input_tokens": 0,
+            "output_tokens": 0,
+            "total_tokens": 0,
+        }
+
+    def get_usage_snapshot(self) -> Dict[str, Any]:
+        """Return a JSON-serializable snapshot of accumulated API usage."""
+        return {**self._usage, "model": self.model}
+
+    def reset_usage(self) -> None:
+        """Reset accumulated usage counters while preserving controller config."""
+        for key in self._usage:
+            self._usage[key] = 0
 
     @retry_llm_call(max_retries=2)
     def get_completion(self, prompt: str, temperature: float = 0.7) -> str:
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[
-                {"role": "system", "content": self.SYSTEM_MESSAGE},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=temperature,
-            max_tokens=1000,
-        )
-        return response.choices[0].message.content
+        self._usage["attempts_total"] += 1
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": self.SYSTEM_MESSAGE},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=temperature,
+                max_tokens=1000,
+            )
+            usage = getattr(response, "usage", None)
+            prompt_details = getattr(usage, "prompt_tokens_details", None)
+            self._usage["requests"] += 1
+            self._usage["input_tokens"] += getattr(usage, "prompt_tokens", 0) or 0
+            self._usage["cached_input_tokens"] += getattr(prompt_details, "cached_tokens", 0) or 0
+            self._usage["output_tokens"] += getattr(usage, "completion_tokens", 0) or 0
+            self._usage["total_tokens"] += getattr(usage, "total_tokens", 0) or 0
+            return response.choices[0].message.content
+        except Exception:
+            self._usage["failed_attempts"] += 1
+            raise
 
 
 class RobustOllamaController(RobustBaseLLMController):

@@ -20,9 +20,10 @@ import argparse
 import logging
 import hashlib
 import platform
+import re
 import subprocess
 import time
-from typing import List, Dict, Optional
+from typing import Any, List, Dict, Optional
 from pathlib import Path
 import numpy as np
 from load_dataset import load_locomo_dataset, QA, Turn, Session, Conversation
@@ -36,6 +37,95 @@ import random
 from tqdm import tqdm
 from utils import calculate_metrics, aggregate_metrics
 from datetime import datetime, timezone
+
+
+USAGE_COUNTER_KEYS = (
+    "requests",
+    "attempts_total",
+    "failed_attempts",
+    "input_tokens",
+    "cached_input_tokens",
+    "output_tokens",
+    "total_tokens",
+)
+USAGE_PRICING_USD_PER_MILLION = {
+    "input_tokens": 0.15,
+    "cached_input_tokens": 0.075,
+    "output_tokens": 0.60,
+}
+USAGE_PRICING_METADATA = {
+    "as_of": "2026-07-14",
+    "currency": "USD",
+    "source_url": "https://openai.com/api/pricing/",
+}
+
+
+def combine_usage_snapshots(
+    snapshots: List[Dict], model: Optional[str] = None
+) -> Dict:
+    """Sum usage snapshots without retaining request content or credentials."""
+    combined = {key: 0 for key in USAGE_COUNTER_KEYS}
+    for snapshot in snapshots:
+        for key in USAGE_COUNTER_KEYS:
+            combined[key] += snapshot.get(key, 0) or 0
+        if model is None and snapshot.get("model"):
+            model = snapshot["model"]
+    return {**combined, "model": model}
+
+
+def diff_usage_snapshots(after: Dict, before: Dict) -> Dict:
+    """Return usage accrued between two cumulative snapshots."""
+    return {
+        **{key: (after.get(key, 0) or 0) - (before.get(key, 0) or 0)
+           for key in USAGE_COUNTER_KEYS},
+        "model": after.get("model") or before.get("model"),
+    }
+
+
+def estimate_usage_cost_usd(snapshot: Dict) -> float:
+    """Estimate OpenAI cost using the experiment's explicit price snapshot."""
+    cached = snapshot.get("cached_input_tokens", 0) or 0
+    input_tokens = snapshot.get("input_tokens", 0) or 0
+    uncached = max(0, input_tokens - cached)
+    output = snapshot.get("output_tokens", 0) or 0
+    return (
+        uncached * USAGE_PRICING_USD_PER_MILLION["input_tokens"]
+        + cached * USAGE_PRICING_USD_PER_MILLION["cached_input_tokens"]
+        + output * USAGE_PRICING_USD_PER_MILLION["output_tokens"]
+    ) / 1_000_000
+
+
+def build_run_tracking_metadata(
+    replicate_id: Optional[str],
+    schedule_seed: Optional[int],
+    cache_namespace: Optional[str],
+    memory_build: Dict,
+    evaluation: Dict,
+    schedule_position: Optional[int] = None,
+    sample_ids: Optional[List[int]] = None,
+) -> Dict:
+    """Build serializable run identity, phase usage, and estimated costs."""
+    total = combine_usage_snapshots(
+        [memory_build, evaluation], model=memory_build.get("model") or evaluation.get("model")
+    )
+
+    def with_cost(snapshot: Dict) -> Dict:
+        return {**snapshot, "estimated_cost_usd": estimate_usage_cost_usd(snapshot)}
+
+    return {
+        "replicate_id": replicate_id,
+        "schedule_seed": schedule_seed,
+        "schedule_position": schedule_position,
+        "cache_namespace": cache_namespace,
+        "sample_ids": list(sample_ids or []),
+        "usage": {
+            "pricing_usd_per_million": dict(USAGE_PRICING_USD_PER_MILLION),
+            "pricing_metadata": dict(USAGE_PRICING_METADATA),
+            "memory_build": with_cost(memory_build),
+            "evaluation": with_cost(evaluation),
+            "total": with_cost(total),
+        },
+    }
 
 
 def sha256_of_file(path: str, chunk: int = 1 << 20) -> str:
@@ -60,7 +150,43 @@ def git_commit_sha(repo_dir: str) -> Optional[str]:
         return None
 
 
-def resolve_memories_dir(backend: str, model: str, dataset_path: str) -> str:
+def git_worktree_provenance(repo_dir: str) -> Dict[str, Any]:
+    """Describe the worktree and hash the code paths that drive evaluation."""
+    try:
+        status = subprocess.check_output(
+            ["git", "status", "--porcelain=v1", "--untracked-files=all"],
+            cwd=repo_dir,
+            stderr=subprocess.DEVNULL,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError):
+        status = b""
+    code_paths = (
+        "test_advanced_robust.py",
+        "memory_layer_robust.py",
+        "utils.py",
+        "llm_text_parsers.py",
+        "load_dataset.py",
+        "run_entrega3.py",
+        "analysis/result_validation.py",
+    )
+    hashes = {
+        path: sha256_of_file(os.path.join(repo_dir, path))
+        for path in code_paths
+        if os.path.isfile(os.path.join(repo_dir, path))
+    }
+    return {
+        "git_dirty": bool(status.strip()),
+        "git_status_sha256": hashlib.sha256(status).hexdigest(),
+        "code_sha256": hashes,
+    }
+
+
+def resolve_memories_dir(
+    backend: str,
+    model: str,
+    dataset_path: str,
+    cache_namespace: Optional[str] = None,
+) -> str:
     """Resolve the cache directory for cached memories.
 
     Uses a hash-suffixed directory name so that renaming a dataset file (while
@@ -81,6 +207,15 @@ def resolve_memories_dir(backend: str, model: str, dataset_path: str) -> str:
     hash_dir = os.path.join(
         base, f"cached_memories_robust_{backend}_{model}_{dataset_stem}_{hash12}"
     )
+    if cache_namespace is not None:
+        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,63}", cache_namespace):
+            raise ValueError(
+                "Invalid cache namespace: use 1-64 letters, digits, dots, underscores, or hyphens"
+            )
+        namespaced_dir = f"{hash_dir}_ns-{cache_namespace}"
+        os.makedirs(namespaced_dir, exist_ok=True)
+        return namespaced_dir
+
     legacy_dir = os.path.join(
         base, f"cached_memories_robust_{backend}_{model}_{dataset_stem}"
     )
@@ -108,12 +243,15 @@ def resolve_memories_dir(backend: str, model: str, dataset_path: str) -> str:
 
 
 # Download required NLTK data
-try:
-    nltk.data.find("tokenizers/punkt")
-    nltk.data.find("wordnet")
-except LookupError:
-    nltk.download("punkt")
-    nltk.download("wordnet")
+for resource_path, resource_name in (
+    ("tokenizers/punkt", "punkt"),
+    ("tokenizers/punkt_tab/english", "punkt_tab"),
+    ("corpora/wordnet", "wordnet"),
+):
+    try:
+        nltk.data.find(resource_path)
+    except LookupError:
+        nltk.download(resource_name)
 
 # Initialize SentenceTransformer model (this will be reused)
 try:
@@ -243,6 +381,20 @@ Question: {question} Short answer:"""
         return response, user_prompt, raw_context
 
 
+def get_agent_usage_snapshot(agent: RobustAdvancedMemAgent, model: str) -> Dict:
+    """Combine usage from the memory and retrieval OpenAI controllers."""
+    controllers = (
+        agent.memory_system.llm_controller.llm,
+        agent.retriever_llm.llm,
+    )
+    snapshots = []
+    for controller in controllers:
+        get_snapshot = getattr(controller, "get_usage_snapshot", None)
+        if get_snapshot is not None:
+            snapshots.append(get_snapshot())
+    return combine_usage_snapshots(snapshots, model=model)
+
+
 def setup_logger(log_file: Optional[str] = None) -> logging.Logger:
     """Set up logging configuration."""
     eval_logger = logging.getLogger("locomo_eval_robust")
@@ -273,6 +425,10 @@ def evaluate_dataset(
     temperature_answer: float = 0.7,
     sglang_host: str = "http://localhost",
     sglang_port: int = 30000,
+    replicate_id: Optional[str] = None,
+    schedule_seed: Optional[int] = None,
+    cache_namespace: Optional[str] = None,
+    schedule_position: Optional[int] = None,
 ):
     """Evaluate the robust agent on the LoComo dataset."""
     # Seed RNGs for reproducibility. Category 5's answer-ordering coin flip and
@@ -309,14 +465,20 @@ def evaluate_dataset(
     all_categories = []
     total_questions = 0
     category_counts = defaultdict(int)
+    memory_build_usage = combine_usage_snapshots([], model=model)
+    evaluation_usage = combine_usage_snapshots([], model=model)
+    selected_sample_ids = []
 
     i = 0
     error_num = 0
-    memories_dir = resolve_memories_dir(backend, model, dataset_path)
+    memories_dir = resolve_memories_dir(
+        backend, model, dataset_path, cache_namespace=cache_namespace
+    )
     os.makedirs(memories_dir, exist_ok=True)
     allow_categories = [1, 2, 3, 4, 5]
 
     for sample_idx, sample in enumerate(samples):
+        selected_sample_ids.append(sample_idx)
         agent = RobustAdvancedMemAgent(
             model,
             backend,
@@ -327,6 +489,7 @@ def evaluate_dataset(
             sglang_host=sglang_host,
             sglang_port=sglang_port,
         )
+        usage_before_memory_build = get_agent_usage_snapshot(agent, model)
 
         memory_cache_file = os.path.join(
             memories_dir, f"memory_cache_sample_{sample_idx}.pkl"
@@ -374,6 +537,18 @@ def evaluate_dataset(
                 retriever_cache_file, retriever_cache_embeddings_file
             )
             eval_logger.info(f"Successfully cached {len(memories_to_cache)} memories")
+
+        usage_after_memory_build = get_agent_usage_snapshot(agent, model)
+        memory_build_usage = combine_usage_snapshots(
+            [
+                memory_build_usage,
+                diff_usage_snapshots(
+                    usage_after_memory_build, usage_before_memory_build
+                ),
+            ],
+            model=model,
+        )
+        usage_before_evaluation = usage_after_memory_build
 
         eval_logger.info(f"Processing sample {sample_idx + 1}/{len(samples)}")
 
@@ -431,6 +606,17 @@ def evaluate_dataset(
                 if total_questions % 10 == 0:
                     eval_logger.info(f"Processed {total_questions} questions")
 
+        usage_after_evaluation = get_agent_usage_snapshot(agent, model)
+        evaluation_usage = combine_usage_snapshots(
+            [
+                evaluation_usage,
+                diff_usage_snapshots(
+                    usage_after_evaluation, usage_before_evaluation
+                ),
+            ],
+            model=model,
+        )
+
     aggregate_results = aggregate_metrics(all_metrics, all_categories)
 
     wall_end = time.time()
@@ -466,10 +652,23 @@ def evaluate_dataset(
         "memory_layer": "robust",
         "memories_cache_dir": os.path.relpath(memories_dir, repo_dir),
         "repo_commit": git_commit_sha(repo_dir),
+        "repo_commit_role": "upstream base commit; exact local code is identified by code_sha256",
         "python_version": sys.version.split()[0],
         "platform": platform.platform(),
         "command": command_invocation,
     }
+    metadata.update(git_worktree_provenance(repo_dir))
+    metadata.update(
+        build_run_tracking_metadata(
+            replicate_id=replicate_id,
+            schedule_seed=schedule_seed,
+            cache_namespace=cache_namespace,
+            memory_build=memory_build_usage,
+            evaluation=evaluation_usage,
+            schedule_position=schedule_position,
+            sample_ids=selected_sample_ids,
+        )
+    )
     eval_logger.info(
         f"Run finished in {duration_seconds}s "
         f"(seed={seed}, dataset_sha256={metadata['dataset_sha256'][:12]})"
@@ -513,7 +712,8 @@ def evaluate_dataset(
     return final_results
 
 
-def main():
+def build_argument_parser() -> argparse.ArgumentParser:
+    """Build the CLI parser without executing an experiment."""
     parser = argparse.ArgumentParser(
         description="Evaluate robust text-only agent on LoComo dataset (no JSON schema dependency)"
     )
@@ -576,6 +776,35 @@ def main():
             "which is controlled by --temperature_c5."
         ),
     )
+    parser.add_argument(
+        "--replicate-id",
+        type=str,
+        default=None,
+        help="Identifier for this experimental replicate.",
+    )
+    parser.add_argument(
+        "--schedule-seed",
+        type=int,
+        default=None,
+        help="Seed used to generate the external execution schedule.",
+    )
+    parser.add_argument(
+        "--cache-namespace",
+        type=str,
+        default=None,
+        help="Safe namespace that isolates the memory cache for this block.",
+    )
+    parser.add_argument(
+        "--schedule-position",
+        type=int,
+        default=None,
+        help="One-based position of this run in its replicate schedule.",
+    )
+    return parser
+
+
+def main():
+    parser = build_argument_parser()
     args = parser.parse_args()
 
     if args.ratio <= 0.0 or args.ratio > 1.0:
@@ -587,17 +816,21 @@ def main():
     )
 
     evaluate_dataset(
-        dataset_path,
-        args.model,
-        output_path,
-        args.ratio,
-        args.backend,
-        args.temperature_c5,
-        args.retrieve_k,
-        args.seed,
-        args.temperature,
-        args.sglang_host,
-        args.sglang_port,
+        dataset_path=dataset_path,
+        model=args.model,
+        output_path=output_path,
+        ratio=args.ratio,
+        backend=args.backend,
+        temperature_c5=args.temperature_c5,
+        retrieve_k=args.retrieve_k,
+        seed=args.seed,
+        temperature_answer=args.temperature,
+        sglang_host=args.sglang_host,
+        sglang_port=args.sglang_port,
+        replicate_id=args.replicate_id,
+        schedule_seed=args.schedule_seed,
+        cache_namespace=args.cache_namespace,
+        schedule_position=args.schedule_position,
     )
 
 

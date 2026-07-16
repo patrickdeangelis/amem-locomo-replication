@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "study_scope": "LoCoMo sample 0 only",
+  "schedule_seed": 20260714,
+  "replicates": 5,
+  "k_values": [
+    3,
+    5,
+    10
+  ],
+  "runs": [
+    {
+      "replicate_id": "R1",
+      "replicate_number": 1,
+      "position": 1,
+      "retrieve_k": 3,
+      "run_seed": 20260715,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r1",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r1_k3.json"
+    },
+    {
+      "replicate_id": "R1",
+      "replicate_number": 1,
+      "position": 2,
+      "retrieve_k": 10,
+      "run_seed": 20260715,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r1",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r1_k10.json"
+    },
+    {
+      "replicate_id": "R1",
+      "replicate_number": 1,
+      "position": 3,
+      "retrieve_k": 5,
+      "run_seed": 20260715,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r1",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r1_k5.json"
+    },
+    {
+      "replicate_id": "R2",
+      "replicate_number": 2,
+      "position": 1,
+      "retrieve_k": 10,
+      "run_seed": 20260716,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r2",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r2_k10.json"
+    },
+    {
+      "replicate_id": "R2",
+      "replicate_number": 2,
+      "position": 2,
+      "retrieve_k": 3,
+      "run_seed": 20260716,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r2",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r2_k3.json"
+    },
+    {
+      "replicate_id": "R2",
+      "replicate_number": 2,
+      "position": 3,
+      "retrieve_k": 5,
+      "run_seed": 20260716,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r2",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r2_k5.json"
+    },
+    {
+      "replicate_id": "R3",
+      "replicate_number": 3,
+      "position": 1,
+      "retrieve_k": 5,
+      "run_seed": 20260717,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r3",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r3_k5.json"
+    },
+    {
+      "replicate_id": "R3",
+      "replicate_number": 3,
+      "position": 2,
+      "retrieve_k": 10,
+      "run_seed": 20260717,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r3",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r3_k10.json"
+    },
+    {
+      "replicate_id": "R3",
+      "replicate_number": 3,
+      "position": 3,
+      "retrieve_k": 3,
+      "run_seed": 20260717,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r3",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r3_k3.json"
+    },
+    {
+      "replicate_id": "R4",
+      "replicate_number": 4,
+      "position": 1,
+      "retrieve_k": 5,
+      "run_seed": 20260718,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r4",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r4_k5.json"
+    },
+    {
+      "replicate_id": "R4",
+      "replicate_number": 4,
+      "position": 2,
+      "retrieve_k": 3,
+      "run_seed": 20260718,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r4",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r4_k3.json"
+    },
+    {
+      "replicate_id": "R4",
+      "replicate_number": 4,
+      "position": 3,
+      "retrieve_k": 10,
+      "run_seed": 20260718,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r4",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r4_k10.json"
+    },
+    {
+      "replicate_id": "R5",
+      "replicate_number": 5,
+      "position": 1,
+      "retrieve_k": 3,
+      "run_seed": 20260719,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r5",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r5_k3.json"
+    },
+    {
+      "replicate_id": "R5",
+      "replicate_number": 5,
+      "position": 2,
+      "retrieve_k": 5,
+      "run_seed": 20260719,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r5",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r5_k5.json"
+    },
+    {
+      "replicate_id": "R5",
+      "replicate_number": 5,
+      "position": 3,
+      "retrieve_k": 10,
+      "run_seed": 20260719,
+      "schedule_seed": 20260714,
+      "cache_namespace": "entrega3_r5",
+      "output": "results/entrega3/results_amem_gpt4omini_sample0_r5_k10.json"
+    }
+  ]
+}

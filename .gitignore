@@ -31,3 +31,8 @@ logs/
 paper/
 article-assets/
 figures/
+
+# Public, deterministic derivatives used by the reproduction package
+!article-assets/
+!article-assets/entrega3/
+!article-assets/entrega3/**

@@ -1,88 +1,139 @@
-# Replicacao parcial do A-Mem no LoCoMo
+# Estudos experimentais do A-Mem no LoCoMo
 
-Este repositorio contem os artefatos publicaveis da Entrega 2 de Reprodutibilidade em Pesquisa: uma replicacao parcial do A-Mem no benchmark LoCoMo, usando OpenAI API com `gpt-4o-mini` e varredura de `retrieve_k` em `3`, `5` e `10`.
+Este repositório público reúne código, dados, resultados e documentação de
+estudos experimentais sobre o A-Mem no benchmark LoCoMo.
 
-O experimento principal executado usa `amem/data/locomo10.json` com `--ratio 0.1`, selecionando o sample 0 inteiro: 19 sessoes, 419 turnos e 199 perguntas.
+O projeto é um arquivo evolutivo de reprodutibilidade. Novas atividades podem
+acrescentar protocolos, análises e publicações sem apagar o histórico das
+execuções anteriores.
+
+## Objetivo
+
+O objetivo é investigar como configurações do A-Mem afetam a qualidade das
+respostas, o custo e o comportamento operacional em conversas longas.
+
+O estudo mais recente é uma replicação parcial do método e dos artefatos do
+A-Mem, com uma análise de sensibilidade de `retrieve_k`. Os níveis comparados
+são 3, 5 e 10 memórias recuperadas por consulta.
+
+## Escopo atual
+
+O experimento usa o `sample 0` do LoCoMo: 19 sessões, 419 turnos e 199
+perguntas, com OpenAI API e `gpt-4o-mini`.
+
+O recorte foi adotado por restrição de custo. Os resultados descrevem o diálogo
+avaliado e não estimam o desempenho médio no LoCoMo completo.
+
+Foram executados cinco blocos de repetição. Cada bloco avaliou os três níveis de
+`retrieve_k`, totalizando quinze resultados completos.
 
 ## Estrutura
 
-- `amem/`: codigo do A-Mem usado na execucao, scripts de reproducao, dados e JSONs de resultado.
-- `amem/analysis/`: scripts de analise, geracao de relatorios, tabelas, figuras, manifest e estimativa de custo.
-- `amem/results/`: resultados brutos em JSON. Os arquivos `results_amem_gpt4omini_ratio01_k*.json` sao a evidencia principal.
-- `docs/`: comandos executados, manifest auditavel, relatorios e resumo sanitizado de uso/custo da OpenAI API.
+- `amem/`: implementação, dados, dependências e scripts de execução.
+- `amem/results/entrega3/`: quinze resultados brutos do estudo de cinco blocos.
+- `amem/analysis/`: análise estatística, exportadores e validadores.
+- `amem/tests/`: testes offline da instrumentação e da análise.
+- `article-assets/entrega3/`: tabelas e figuras derivadas dos JSONs.
+- `docs/experimento-cinco-blocos/`: protocolo, ambiente, plano e inventário.
+- `docs/`: artigos e registros das atividades anteriores.
 
-## Execucao principal reproduzida
+Os resultados históricos são preservados para auditoria. Arquivos anteriores a
+correções metodológicas ficam separados e não substituem os resultados atuais.
+
+## Reprodução offline
+
+A análise publicada pode ser regenerada sem chave da OpenAI e sem novas
+chamadas pagas.
+
+Recomenda-se Python 3.11.
 
 ```bash
 cd amem
 python3.11 -m venv .venv
 . .venv/bin/activate
-pip install -r requirements.txt
-python -m nltk.downloader -d .cache/nltk \
-  punkt punkt_tab wordnet
+pip install -r requirements.lock.txt
+python -m pytest tests -q
+```
+
+Regere a análise a partir dos quinze JSONs:
+
+```bash
+python analysis/analyze_entrega3.py results/entrega3/*.json \
+  --json-output analysis/entrega3-analysis.json \
+  --markdown-output analysis/entrega3-analysis.md
+
+python analysis/export_entrega3_assets.py \
+  analysis/entrega3-analysis.json \
+  --output-dir ../article-assets/entrega3
+```
+
+Os resultados regenerados podem ser comparados com
+`amem/analysis/entrega3-analysis.json` e com os derivados publicados.
+
+## Reexecução do experimento
+
+Copie o modelo de configuração antes de qualquer chamada à API:
+
+```bash
+cd amem
 cp .env.example .env.local
 ```
 
-Edite `amem/.env.local` e defina `OPENAI_API_KEY`.
+Defina `OPENAI_API_KEY` em `.env.local`. Esse arquivo é local e não deve ser
+versionado.
 
-Para reproduzir a execucao principal:
-
-```bash
-cd amem
-./run_etapa2_ratio01.sh
-```
-
-
-Os resultados esperados sao gravados em:
-
-- `amem/results/results_amem_gpt4omini_ratio01_k3.json`
-- `amem/results/results_amem_gpt4omini_ratio01_k5.json`
-- `amem/results/results_amem_gpt4omini_ratio01_k10.json`
-
-## Smoke test
-
-Para validar ambiente antes da rodada principal:
+O runner não chama a API no modo padrão. Ele apenas confere ou gera a agenda:
 
 ```bash
-cd amem
-./run_etapa2_smoke.sh
+python run_entrega3.py
 ```
 
-## Analise
-
-Depois de executar ou alterar resultados:
+A repetição paga exige uma decisão explícita:
 
 ```bash
-cd amem
-python analysis/summarize_results.py
-python analysis/export_article_assets.py
-python analysis/make_manifest.py
+python run_entrega3.py --execute
 ```
 
-Os relatorios publicados estao em `docs/`.
+Chamadas futuras podem gerar custo e não precisam produzir respostas idênticas
+bit a bit, pois o backend é hospedado. O custo total observado foi estimado em
+US$ 2,52.
 
 ## Resultados principais
 
-Na execucao de 2026-07-07:
+As médias de F1 entre os cinco blocos foram 0,2676 para `k=3`, 0,2943 para
+`k=5` e 0,3636 para `k=10`.
 
-| retrieve_k | F1 | BLEU-1 | Exact match | Duracao |
-|---:|---:|---:|---:|---:|
-| 3 | 0.2567 | 0.2244 | 0.1005 | 755.474s |
-| 5 | 0.3026 | 0.2640 | 0.1206 | 810.171s |
-| 10 | 0.3248 | 0.2844 | 0.1357 | 899.266s |
+O contraste primário `k=10 - k=3` apresentou ganho médio de 0,0960. Os cinco
+deltas foram positivos, com teste exato de sinais unilateral
+`p=0,03125`.
 
-Duracao total registrada: 2464.911s, cerca de 41.1 min.
+As conclusões são condicionadas ao diálogo estudado. Elas não demonstram
+superioridade geral do A-Mem nem substituem uma avaliação no LoCoMo completo.
 
-Uso/custo medido no bucket diario da OpenAI API em 2026-07-07: US$ 0.9153483. A granularidade do export e diaria, portanto esse custo nao deve ser interpretado como atribuicao isolada por configuracao.
+## Documentação
 
-## Segredos e dados locais
+- [Artigo científico atual](docs/entrega_3_reprodutibilidade_patrick_santos.pdf)
+- [Protocolo do estudo de cinco blocos](docs/experimento-cinco-blocos/protocolo.md)
+- [Inventário do Kit de Reprodução](docs/experimento-cinco-blocos/kit-reproducao.md)
+- [Ambiente de execução](docs/experimento-cinco-blocos/ambiente.md)
+- [Documentação das atividades anteriores](docs/README.md)
+- [Resultados históricos do primeiro recorte](docs/resultados-etapa-2-ratio01.md)
 
-Este repositorio nao inclui `.env.local`, chaves de API, ambiente virtual, caches de modelo, caches de memorias ou logs locais brutos. Use `.env.example` como modelo.
+Somente o PDF do artigo é publicado. O arquivo-fonte do artigo não faz parte do
+repositório público.
 
-## Origem
+## Segurança, dados e licenças
 
-Codigo base: A-Mem, clonado de `https://github.com/WujiangXu/A-mem.git`.
+O repositório não deve conter chaves de API, `.env.local`, ambientes virtuais,
+caches de modelos, caches de memórias ou logs locais brutos.
 
-Commit base usado em 2026-07-07: `0c8039f28fdcc08189a23c07a3437d9d2482f9c2`.
+A origem, licença, URL e hash do dataset estão em
+[`amem/data/README.md`](amem/data/README.md).
 
-Consulte `amem/LICENSE` para a licenca do codigo A-Mem.
+O código-base deriva do
+[A-Mem](https://github.com/WujiangXu/A-mem), no commit
+`0c8039f28fdcc08189a23c07a3437d9d2482f9c2`.
+
+Consulte [`amem/LICENSE`](amem/LICENSE) para o código-base e
+[`LICENSE-ARTIFACTS.md`](LICENSE-ARTIFACTS.md) para dados, documentação,
+resultados e derivados.

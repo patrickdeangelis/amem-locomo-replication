@@ -1,0 +1,4 @@
+sample_id,total_blocks,comparison,delta_R1,delta_R2,delta_R3,delta_R4,delta_R5,mean_delta,min_delta,max_delta,base_mean_f1,relative_difference,relative_difference_definition,ci_low,ci_high,p_value,p_adjusted_holm,p_method,effect_size_dz
+0,5,3_to_5,0.012593,0.026534,0.022178,0.016842,0.055188,0.026667,0.012593,0.055188,0.267630,0.099642,mean_delta / mean_f1_of_base_scenario,0.016210,0.040938,0.062500,0.125000,two-sided exact sign test; Holm adjusted,1.587848
+0,5,3_to_10,0.082790,0.075576,0.124892,0.086244,0.110502,0.096001,0.075576,0.124892,0.267630,0.358707,mean_delta / mean_f1_of_base_scenario,0.080595,0.113593,0.031250,,one-sided exact sign test,4.613701
+0,5,5_to_10,0.070197,0.049042,0.102714,0.069402,0.055314,0.069334,0.049042,0.102714,0.294297,0.235591,mean_delta / mean_f1_of_base_scenario,0.055623,0.086731,0.062500,0.125000,two-sided exact sign test; Holm adjusted,3.340363
